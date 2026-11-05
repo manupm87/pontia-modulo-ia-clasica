@@ -220,8 +220,10 @@ def diapositiva(escena: dict, n_pasos: int):
     d = ImageDraw.Draw(img)
     d.rectangle([0, 0, ANCHO, 92], fill=COLORES["marca"])
     d.text((48, 18), "Seguros Alonso · Clara, asistente de voz", font=_fuente("segoeuib.ttf", 30), fill="white")
-    d.text((48, 56), "Dialogflow ES · Webhook FastAPI · OCR + RAG · Whisper + TTS con SSML",
-           font=_fuente("segoeui.ttf", 18), fill=COLORES["claro"])
+    subtitulo = ("Dialogflow ES (Google) · STT y TTS nativos con SSML · Webhook FastAPI · OCR + RAG"
+                 if f.get("nativo") else
+                 "Emulador de Dialogflow ES · Whisper + TTS neuronal con SSML · Webhook FastAPI · OCR + RAG")
+    d.text((48, 56), subtitulo, font=_fuente("segoeui.ttf", 18), fill=COLORES["claro"])
     d.text((ANCHO - 48, 34), f"paso {f['paso']}/{n_pasos}", font=_fuente("segoeui.ttf", 20),
            fill="white", anchor="ra")
 

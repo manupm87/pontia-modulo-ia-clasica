@@ -23,7 +23,7 @@ GUION: list[dict] = [
      "nota": "Follow-up de confirmación sí: el webhook crea la cita"},
     {"dice": "¿Cuánto cuesta al año el todo riesgo sin franquicia?",
      "nota": "Consulta documental sobre la tabla escaneada (RAG con ChromaDB)"},
-    {"dice": "¿Me cubre el seguro de vida de mi mujer?",
+    {"dice": "¿Tenéis también seguro de moto?",
      "nota": "Control de alucinaciones: no está en los documentos y lo dice"},
     {"dice": "Vale, quiero hablar con una persona.",
      "nota": "Transferencia a agente humano con ticket"},

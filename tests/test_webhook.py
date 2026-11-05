@@ -185,3 +185,22 @@ def test_matricula_dictada_en_slot_filling(cliente, texto):
     """El STT de Google transcribe la matrícula de formas que la entidad regex no reconoce."""
     r = cliente.post("/webhook", json=peticion("solicitar_cita", {}, texto, completos=False)).json()
     assert r["followupEventInput"]["parameters"]["matricula"] == "1234 BCD"
+
+
+def test_si_sin_solicitud_abierta(cliente):
+    r = cliente.post("/webhook", json=peticion("solicitar_cita - si", {}, "sí")).json()
+    assert "no tengo ninguna cita pendiente" in r["fulfillmentText"]
+
+
+def test_fin_de_semana_una_sola_pregunta(cliente):
+    r = cliente.post("/webhook", json=peticion("solicitar_cita", params_validos(fecha=proximo(5).isoformat()))).json()
+    assert r["fulfillmentText"].count("?") == 1, r["fulfillmentText"]
+
+
+def test_fallback_con_flujo_rescata_respuesta_suelta(cliente):
+    """Dialogflow real a veces manda "el lunes por la mañana" al fallback: el flujo sigue."""
+    ctx = [("ctx_solicitud_en_curso", 9, {"guardado_matricula": "1234 BCD"})]
+    r = cliente.post("/webhook", json=peticion("Default Fallback Intent", {}, "el lunes por la mañana",
+                                               contextos=ctx)).json()
+    params = r["followupEventInput"]["parameters"]
+    assert params["matricula"] == "1234 BCD" and params["franja"] == "manana" and params["fecha"]

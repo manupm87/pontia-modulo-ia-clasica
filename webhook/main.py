@@ -137,6 +137,30 @@ def solo_parametros_cita(params: dict) -> dict:
 PATRON_MATRICULA_EN_TEXTO = re.compile(r"\b(\d{4})\s?([BCDFGHJKLMNPRSTVWXYZ]{3})\b")
 
 
+_EXTRACTOR = None
+TIPOS_A_PARAMETRO = {"@sys.date": "fecha", "@franja": "franja", "@sys.geo-city": "ciudad", "@tipo_dano": "tipo_dano"}
+
+
+def datos_en_texto(texto: str) -> dict:
+    """
+    Fecha, franja, ciudad y tipo de daño de una frase suelta, con el mismo extractor de entidades
+    en español que usa el emulador (lee las entidades del export del agente).
+    """
+    global _EXTRACTOR
+    from datetime import datetime
+    from zoneinfo import ZoneInfo
+    from dialogflow_local.emulador import RUTA_AGENTE_POR_DEFECTO, ExtractorEntidades, cargar_agente
+    zona = ZoneInfo("Europe/Madrid")
+    if _EXTRACTOR is None:
+        _, entidades, _ = cargar_agente(RUTA_AGENTE_POR_DEFECTO)
+        _EXTRACTOR = ExtractorEntidades(entidades, zona)
+    datos = {}
+    for c in _EXTRACTOR.extraer(texto or "", datetime.now(zona)):
+        if c.tipo in TIPOS_A_PARAMETRO:
+            datos.setdefault(TIPOS_A_PARAMETRO[c.tipo], c.valor)
+    return datos
+
+
 def matricula_en_texto(texto: str) -> str | None:
     """
     Busca una matrícula DICTADA en el texto reconocido por el STT.
@@ -291,7 +315,8 @@ def solicitar_cita(p: Peticion) -> dict:
         f.decir("Si es por la luna, dímelo; si no, puedo pasarte con un agente.")
         botones = ["Es por la luna", "Hablar con un agente"]
     elif problema.campo == "fecha":
-        f.decir("¿Qué otro día te viene bien?")
+        if not problema.mensaje.rstrip().endswith("?"):  # el de fin de semana ya propone un día
+            f.decir("¿Qué otro día te viene bien?")
     elif problema.campo == "ciudad":
         f.decir("¿En qué otra ciudad te viene bien?")
     else:
@@ -313,6 +338,10 @@ def parametros_flujo(p: Peticion) -> dict:
 
 def confirmar_si(p: Peticion) -> dict:
     params = parametros_flujo(p)
+    if not params:  # un "sí" suelto sin ninguna solicitud abierta
+        return responder(p, Frase("Ahora mismo no tengo ninguna cita pendiente de confirmar. "
+                                  "¿Quieres que pidamos una cita con un perito?"),
+                         botones=["Pedir cita con un perito"])
     ev = negocio.evaluar_solicitud(params)
     if not ev.valida:  # defensa: nunca creamos una cita inválida
         return responder(p, Frase(ev.problemas[0].mensaje + " ¿Qué dato quieres cambiar?"),
@@ -399,6 +428,13 @@ def fallback(p: Peticion) -> dict:
     # Con una cita a medias, una matrícula dictada que Dialogflow no entendió cae aquí.
     if p.contexto(CTX_SOLICITUD) and (dictada := matricula_en_texto(p.texto)):
         return evento(EVENTO_SOLICITAR_CITA, {**parametros_flujo(p), "matricula": dictada})
+    # Red de seguridad: con la cita a medias, una respuesta suelta ("el lunes por la mañana")
+    # a veces no la clasifica Dialogflow como corregir_dato y cae aquí. Si no es una pregunta,
+    # sacamos fecha, franja y ciudad del texto y seguimos con el flujo en vez de perderlo.
+    if p.contexto(CTX_SOLICITUD) and not es_pregunta(p.texto):
+        datos = datos_en_texto(p.texto)
+        if datos:
+            return evento(EVENTO_SOLICITAR_CITA, {**parametros_flujo(p), **datos})
     # Antes de rendirnos, probamos con los documentos: muchas preguntas libres caen aquí.
     return consulta_documental(p)
 

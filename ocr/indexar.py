@@ -291,7 +291,10 @@ def main() -> None:
     print(f"Embeddings ({MODELO_EMBEDDINGS}, dim {len(vectores[0])}): {len(vectores)} en "
           f"{time.perf_counter() - t0:.1f} s")
 
-    cliente = chromadb.PersistentClient(path=str(RUTA_CHROMA))
+    from chromadb.config import Settings
+    # Mismos ajustes que webhook/rag.py: Chroma no admite dos clientes con ajustes distintos
+    # sobre la misma carpeta en un proceso (el webhook construye el índice si falta).
+    cliente = chromadb.PersistentClient(path=str(RUTA_CHROMA), settings=Settings(anonymized_telemetry=False))
     coleccion = crear_coleccion(cliente)
     coleccion.add(
         ids=[f"frag-{i:03d}" for i in range(len(fragmentos))],

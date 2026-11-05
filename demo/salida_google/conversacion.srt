@@ -67,17 +67,17 @@ Cliente: cuánto cuesta el año el todo riesgo sin franquicia
 Clara: El todo riesgo sin franquicia cuesta 845,90 € al año.
 
 18
-00:01:49,943 --> 00:01:51,790
-Cliente: me cubre el seguro de be de de mi mujer
+00:01:49,943 --> 00:01:51,416
+Cliente: tenéis también seguro de moto
 
 19
-00:01:52,190 --> 00:01:57,747
+00:01:51,816 --> 00:01:57,373
 Clara: No dispongo de esa información en la documentación de Seguros Alonso. ¿Quieres que te pase con un agente?
 
 20
-00:01:58,447 --> 00:02:00,531
+00:01:58,073 --> 00:02:00,156
 Cliente: vale quiero hablar con una persona
 
 21
-00:02:00,931 --> 00:02:20,810
-Clara: Claro, te paso con una persona del equipo de atención al cliente. Tu número de ticket es el TCK-789839. Si se corta, puedes llamar al 910 555 222, de lunes a viernes de 9 a 14 y de 16 a 19 horas.
+00:02:00,556 --> 00:02:20,128
+Clara: Claro, te paso con una persona del equipo de atención al cliente. Tu número de ticket es el TCK-289940. Si se corta, puedes llamar al 910 555 222, de lunes a viernes de 9 a 14 y de 16 a 19 horas.

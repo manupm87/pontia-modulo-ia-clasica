@@ -88,6 +88,8 @@ Reglas:
 3. Si el CONTEXTO no contiene el dato pedido, o la pregunta es sobre otro tipo de seguro (vida, hogar, salud...), otro tipo de vehículo distinto del turismo, u otro tema ajeno a esta documentación: EVIDENCIA: NINGUNA y RESPUESTA: NO_CONSTA.
 4. No uses conocimiento propio. No inventes ni cambies cifras, precios, plazos ni teléfonos: cópialos tal como aparecen.
 5. La RESPUESTA va en español, de tú, en una a tres frases completas, cortas y naturales, porque se leerá en voz alta. Sin markdown, sin listas, sin emojis.
+6. No deduzcas ni supongas datos del cliente que no estén escritos en el CONTEXTO (edad, permiso de conducir, quién conduce, motivos). Di solo lo que el documento dice.
+7. Si la pregunta es sobre la póliza de un cliente concreto (su nombre, "mi póliza", su coche o su matrícula), usa los datos de sus CONDICIONES PARTICULARES (prima, franquicia, conductores) antes que la tabla general de precios. Si solo tienes la tarifa general, di que es la tarifa general.
 
 Ejemplos (documentos inventados, solo para mostrar el formato):
 CONTEXTO: Cobertura «Remolque de caravana»: incluida en Todo riesgo; NO incluida en Terceros.
@@ -109,6 +111,13 @@ PLANTILLA = """CONTEXTO:
 {contexto}
 
 PREGUNTA: {pregunta}"""
+
+# Preguntas sobre la póliza de un cliente concreto -> priorizar sus condiciones particulares
+DOC_POLIZA = "04_condiciones_particulares_SA-104233.png"
+DOC_TARIFAS = "02_tabla_coberturas.png"
+RE_POLIZA_CONCRETA = re.compile(
+    r"\b(ana|ruiz|mi p[oó]liza|mi seguro|mi coche|mi le[oó]n|seat le[oó]n|sa-?104233|1234\s?bcd|"
+    r"mi prima|pago yo|me cobr[aá]is|mi hijo|mi mujer|mi marido)\b", re.IGNORECASE)
 
 RE_NO_CONSTA = re.compile(r"NO[\s_-]*CONSTA", re.IGNORECASE)
 RE_EVIDENCIA = re.compile(r"EVIDENCIA\s*:\s*(.*?)\s*(?=RESPUESTA\s*:|$)", re.IGNORECASE | re.DOTALL)
@@ -237,7 +246,15 @@ class MotorDocumental:
             from chromadb.config import Settings
             cliente = chromadb.PersistentClient(path=str(ruta_chroma),
                                                 settings=Settings(anonymized_telemetry=False))
-            coleccion = cliente.get_collection(COLECCION)
+            try:
+                coleccion = cliente.get_collection(COLECCION)
+            except Exception:
+                # El índice no se versiona (se regenera y cambia en cada ejecución): si no existe,
+                # se construye ahora a partir de data/documentos.json (unos segundos con Ollama).
+                log.info("No hay índice vectorial en %s: lo construyo con ocr.indexar", ruta_chroma)
+                from ocr import indexar
+                indexar.main()
+                coleccion = cliente.get_collection(COLECCION)
             if coleccion.count() == 0:
                 raise RuntimeError("la colección está vacía")
             # Embedding de prueba: comprueba Ollama y deja bge-m3 cargado en memoria
@@ -275,8 +292,9 @@ class MotorDocumental:
                 break
         log.info("Embeddings precalentados en %.1f s", time.perf_counter() - t0)
 
-    def _recuperar_vectorial(self, pregunta: str, k: int) -> list[dict]:
-        res = self.coleccion.query(query_embeddings=[self._embeber(pregunta)], n_results=k,
+    def _recuperar_vectorial(self, pregunta: str, k: int, documento: str | None = None) -> list[dict]:
+        filtro = {"documento": documento} if documento else None
+        res = self.coleccion.query(query_embeddings=[self._embeber(pregunta)], n_results=k, where=filtro,
                                    include=["documents", "metadatas", "distances"])
         return [{"documento": m["documento"], "texto": t, "similitud": round(1 - d, 4)}
                 for t, m, d in zip(res["documents"][0], res["metadatas"][0], res["distances"][0])]
@@ -341,6 +359,21 @@ class MotorDocumental:
 
             mejor = resultados[0]["similitud"]
             usados = [r for r in resultados if r["similitud"] >= max(umbral, mejor - MARGEN_CONTEXTO)]
+
+            # 2b) Pregunta sobre una póliza concreta ("el Seat León de Ana", "mi póliza"): la tabla
+            #     general de precios se parece más a la pregunta que las condiciones particulares,
+            #     y el modelo contestaba con la tarifa genérica (589 €) en vez de la prima real
+            #     (612,40 €). Añadimos siempre los fragmentos de esa póliza al contexto.
+            if vectorial and RE_POLIZA_CONCRETA.search(pregunta):
+                try:
+                    propios = self._recuperar_vectorial(pregunta, 4, documento=DOC_POLIZA)
+                    vistos = {r["texto"] for r in propios}
+                    # La tabla general de tarifas sale de este contexto: su precio de catálogo
+                    # no es lo que paga ese cliente, y el modelo lo prefería a la prima de la póliza.
+                    usados = propios + [r for r in usados
+                                        if r["texto"] not in vistos and r["documento"] != DOC_TARIFAS]
+                except Exception as e:
+                    log.warning("No se pudieron añadir las condiciones particulares: %s", e)
             contexto = "\n\n".join(f"[{i}] {r['texto']}" for i, r in enumerate(usados, 1))
 
             # 3) Generación con el tiempo que quede del presupuesto
