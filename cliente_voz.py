@@ -32,6 +32,10 @@ from dataclasses import dataclass, field
 from pathlib import Path
 
 import numpy as np
+from dotenv import load_dotenv
+
+# DIALOGFLOW_PROJECT_ID, GOOGLE_APPLICATION_CREDENTIALS, TTS_BACKEND... desde .env
+load_dotenv()
 
 FS_MICRO = 16000          # Dialogflow (LINEAR_16) y Whisper trabajan a 16 kHz
 LIMITE_LATENCIA = 5.0     # requisito del enunciado: < 5 s por turno
