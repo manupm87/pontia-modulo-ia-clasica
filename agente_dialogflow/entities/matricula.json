@@ -1,0 +1,9 @@
+{
+  "id": "e4a7830d-ec98-4c82-8fb0-ee705ab1c506",
+  "name": "matricula",
+  "isOverridable": true,
+  "isEnum": false,
+  "isRegexp": true,
+  "automatedExpansion": false,
+  "allowFuzzyExtraction": false
+}

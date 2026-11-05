@@ -1,0 +1,563 @@
+[
+  {
+    "id": "10eb8691-f44b-4963-b4ef-bd449f0a09f1",
+    "data": [
+      {
+        "text": "quiero pedir una cita de peritaje",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "552d88f4-4100-40d3-b1d5-119e2eaafbc4",
+    "data": [
+      {
+        "text": "necesito que un perito revise mi coche",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "63926940-0b1b-40c6-a777-24cc75558509",
+    "data": [
+      {
+        "text": "quiero que un perito vea el ",
+        "userDefined": false
+      },
+      {
+        "text": "golpe",
+        "meta": "@tipo_dano",
+        "alias": "tipo_dano",
+        "userDefined": true
+      },
+      {
+        "text": " de mi coche",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "a106ac4b-7d48-4a93-8042-a3b1bc792e3d",
+    "data": [
+      {
+        "text": "necesito cita para peritar el ",
+        "userDefined": false
+      },
+      {
+        "text": "1234 BCD",
+        "meta": "@matricula",
+        "alias": "matricula",
+        "userDefined": true
+      },
+      {
+        "text": " en ",
+        "userDefined": false
+      },
+      {
+        "text": "Madrid",
+        "meta": "@sys.geo-city",
+        "alias": "ciudad",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "el lunes",
+        "meta": "@sys.date",
+        "alias": "fecha",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "por la mañana",
+        "meta": "@franja",
+        "alias": "franja",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "20232ba7-9d7a-4ea9-b2cb-dc5182f26876",
+    "data": [
+      {
+        "text": "me gustaría reservar una cita con el perito",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "c35a11b6-ed14-43b2-bc9c-0d897eb52caa",
+    "data": [
+      {
+        "text": "quiero una peritación de los daños de mi coche",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "90ea7e7b-cbd6-4210-96c8-1f3fe4e9300b",
+    "data": [
+      {
+        "text": "pedir cita para el perito",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "217c447c-9c75-45ce-92e0-3e0bbe2ae50d",
+    "data": [
+      {
+        "text": "he tenido un accidente y quiero que valoren los daños",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "2bd73e29-8147-419b-8b13-65efb07d10fc",
+    "data": [
+      {
+        "text": "quiero que peritéis mi coche",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "3084d58a-be80-49b1-b507-1a90ae815b1f",
+    "data": [
+      {
+        "text": "cita de peritaje para el ",
+        "userDefined": false
+      },
+      {
+        "text": "5678 FGH",
+        "meta": "@matricula",
+        "alias": "matricula",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "8e20b0cd-3d75-40a6-8e72-6cf9e369d800",
+    "data": [
+      {
+        "text": "quiero cita con el perito ",
+        "userDefined": false
+      },
+      {
+        "text": "mañana",
+        "meta": "@sys.date",
+        "alias": "fecha",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "por la tarde",
+        "meta": "@franja",
+        "alias": "franja",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "4607790a-78ba-4325-a066-8da8e8f2907f",
+    "data": [
+      {
+        "text": "necesito un perito en ",
+        "userDefined": false
+      },
+      {
+        "text": "Valencia",
+        "meta": "@sys.geo-city",
+        "alias": "ciudad",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "52a8c439-6917-430e-9bd0-d21106c9522a",
+    "data": [
+      {
+        "text": "reservar peritaje en ",
+        "userDefined": false
+      },
+      {
+        "text": "Sevilla",
+        "meta": "@sys.geo-city",
+        "alias": "ciudad",
+        "userDefined": true
+      },
+      {
+        "text": " para el ",
+        "userDefined": false
+      },
+      {
+        "text": "15 de noviembre",
+        "meta": "@sys.date",
+        "alias": "fecha",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "da7f6778-22af-4762-b087-e1db1b06f2b2",
+    "data": [
+      {
+        "text": "quiero que vean la ",
+        "userDefined": false
+      },
+      {
+        "text": "abolladura",
+        "meta": "@tipo_dano",
+        "alias": "tipo_dano",
+        "userDefined": true
+      },
+      {
+        "text": " del coche",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "39d6adac-b773-4079-be8c-bbaf3cdc8f10",
+    "data": [
+      {
+        "text": "me ha caído ",
+        "userDefined": false
+      },
+      {
+        "text": "granizo",
+        "meta": "@tipo_dano",
+        "alias": "tipo_dano",
+        "userDefined": true
+      },
+      {
+        "text": " en el coche y quiero que lo vea un perito",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "396bc379-12e8-4200-9164-684d9f4b19bc",
+    "data": [
+      {
+        "text": "se me ha roto el ",
+        "userDefined": false
+      },
+      {
+        "text": "parabrisas",
+        "meta": "@tipo_dano",
+        "alias": "tipo_dano",
+        "userDefined": true
+      },
+      {
+        "text": " y necesito una cita con el perito",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "ae11ea93-c028-464a-92ed-12b015f941e6",
+    "data": [
+      {
+        "text": "peritaje",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "92d62c3c-da0a-424d-8842-62c18a353094",
+    "data": [
+      {
+        "text": "cita con el perito",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "f9d55538-c4e8-4754-bd03-eec869369eac",
+    "data": [
+      {
+        "text": "cita para el perito ",
+        "userDefined": false
+      },
+      {
+        "text": "el jueves",
+        "meta": "@sys.date",
+        "alias": "fecha",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "180b1b5f-871c-4f56-a2d1-36f7c73fb0eb",
+    "data": [
+      {
+        "text": "quiero concertar una visita del perito",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "773fa3cd-8c14-407b-b790-84f78878798c",
+    "data": [
+      {
+        "text": "¿me podéis dar cita para tasar los daños?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "5beeee52-5279-46c2-82f8-78f187f4329f",
+    "data": [
+      {
+        "text": "quiero dar un parte y que venga el perito",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "70f0657d-9922-4c7f-9a93-3d764648a006",
+    "data": [
+      {
+        "text": "necesito que valoren el ",
+        "userDefined": false
+      },
+      {
+        "text": "rayón",
+        "meta": "@tipo_dano",
+        "alias": "tipo_dano",
+        "userDefined": true
+      },
+      {
+        "text": " de la puerta",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "4e1b37e0-d71f-4fa3-876b-747bee290217",
+    "data": [
+      {
+        "text": "quiero cita para el ",
+        "userDefined": false
+      },
+      {
+        "text": "9012 JKL",
+        "meta": "@matricula",
+        "alias": "matricula",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "por la mañana",
+        "meta": "@franja",
+        "alias": "franja",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "f504bb24-af43-40dd-a41e-a92577e424b3",
+    "data": [
+      {
+        "text": "pedir cita de peritación en ",
+        "userDefined": false
+      },
+      {
+        "text": "Bilbao",
+        "meta": "@sys.geo-city",
+        "alias": "ciudad",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "pasado mañana",
+        "meta": "@sys.date",
+        "alias": "fecha",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "115741c6-60cb-4735-beb6-07744e0e6fff",
+    "data": [
+      {
+        "text": "agendar un peritaje del vehículo",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "54c654a6-ac47-4a83-940f-19bf6c4c1802",
+    "data": [
+      {
+        "text": "quiero que un perito revise los daños de mi coche en un taller",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "ddb000cf-e0b8-4e82-91bf-4a1ab2d2c1e2",
+    "data": [
+      {
+        "text": "quiero una cita para que el perito vea mi coche ",
+        "userDefined": false
+      },
+      {
+        "text": "el próximo viernes",
+        "meta": "@sys.date",
+        "alias": "fecha",
+        "userDefined": true
+      },
+      {
+        "text": " en ",
+        "userDefined": false
+      },
+      {
+        "text": "Zaragoza",
+        "meta": "@sys.geo-city",
+        "alias": "ciudad",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "4f51242a-f4e5-4cd6-b9e2-9bb14e5107a9",
+    "data": [
+      {
+        "text": "reservar cita de peritaje",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  }
+]

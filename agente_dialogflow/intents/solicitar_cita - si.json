@@ -1,0 +1,45 @@
+{
+  "id": "0e4a4833-43b1-4bab-92ec-0bac8be0d38b",
+  "parentId": "65200a1a-3bb3-449e-8374-510eeaecdfee",
+  "rootParentId": "65200a1a-3bb3-449e-8374-510eeaecdfee",
+  "name": "solicitar_cita - si",
+  "auto": true,
+  "contexts": [
+    "ctx_solicitud_en_curso",
+    "solicitar_cita-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "solicitar_cita.solicitar_cita-yes",
+      "affectedContexts": [
+        {
+          "name": "ctx_solicitud_en_curso",
+          "lifespan": 2
+        }
+      ],
+      "parameters": [],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "es",
+          "speech": [
+            "Hecho, tu cita de peritaje ha quedado registrada. ¿Puedo ayudarte en algo más?"
+          ],
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

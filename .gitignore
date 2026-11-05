@@ -1,0 +1,17 @@
+.venv/
+.venv-xtts/
+__pycache__/
+*.pyc
+.pytest_cache/
+.cache/
+.env
+*clave*.json
+credenciales*.json
+respuesta.wav
+demo/salida/*.wav
+voz/muestras/referencia.wav
+.claude/
+.ruff_cache/
+demo/salida/diapositivas/
+demo/salida_google/*.wav
+demo/salida_google/diapositivas/

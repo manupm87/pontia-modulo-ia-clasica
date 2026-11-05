@@ -1,0 +1,184 @@
+[
+  {
+    "id": "5b166556-88b7-4249-a8aa-7542d87b65fa",
+    "data": [
+      {
+        "text": "hola",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "7b64f34f-fa94-423d-85ec-f8f27c8b7a6d",
+    "data": [
+      {
+        "text": "buenas",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "a1c38d33-d0c5-44c9-936e-d1862597bad0",
+    "data": [
+      {
+        "text": "buenos días",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "41ec4c08-d4d1-4af3-b37c-6ef47a84dac6",
+    "data": [
+      {
+        "text": "buenas tardes",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "c820bf4f-ced4-4020-b5fb-6f6c7f0ca6a1",
+    "data": [
+      {
+        "text": "buenas noches",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "9546cf83-df32-49b3-a09b-471364b0f3f2",
+    "data": [
+      {
+        "text": "hola, qué tal",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "9ac78c83-509b-419c-a1e1-d7741c4b9a76",
+    "data": [
+      {
+        "text": "hola buenas",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "5920a7fd-1085-4a84-a0f4-2bc498595c5d",
+    "data": [
+      {
+        "text": "saludos",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "9301f94e-e678-49b0-84f8-7e531e638d1f",
+    "data": [
+      {
+        "text": "hola, necesito ayuda",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "0752bb3f-8f20-4ad2-b288-9c00e034444c",
+    "data": [
+      {
+        "text": "hola Seguros Alonso",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "17915178-90c3-4def-ad3b-83f289210bee",
+    "data": [
+      {
+        "text": "¿hay alguien?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "093d5c62-af40-4e88-9e31-74ae2969ce9a",
+    "data": [
+      {
+        "text": "buenos días, ¿me puede ayudar?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "0cea7d67-b444-4596-8553-b0488ad29635",
+    "data": [
+      {
+        "text": "hey",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "df162d59-178d-43f1-9db5-d8970b6187a5",
+    "data": [
+      {
+        "text": "qué tal",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  }
+]

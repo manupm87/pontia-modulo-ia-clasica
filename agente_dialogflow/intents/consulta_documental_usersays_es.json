@@ -1,0 +1,405 @@
+[
+  {
+    "id": "ed3cfb31-8fd7-45bd-ad47-57ed062f6ad8",
+    "data": [
+      {
+        "text": "¿qué cubre mi seguro?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "6eba748b-50dd-4caa-ba21-b2405732f44f",
+    "data": [
+      {
+        "text": "¿qué coberturas tiene mi póliza?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "46b4bd4e-2a33-4190-a2f9-7fd4094eac65",
+    "data": [
+      {
+        "text": "¿cuál es la franquicia de mi póliza?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "151f9f01-2b61-48b4-99bd-61dbfe391ef2",
+    "data": [
+      {
+        "text": "¿tengo franquicia?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "170f471d-f8ae-41ae-bf4b-18b06cd8116d",
+    "data": [
+      {
+        "text": "¿cuánto tengo que pagar de franquicia?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "a0a4aa50-448e-4c43-b281-cf3cff2f5cde",
+    "data": [
+      {
+        "text": "¿qué plazo tengo para dar un parte?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "eb9dfc9f-0d16-498b-a1c2-efb772d48a54",
+    "data": [
+      {
+        "text": "¿cuántos días tengo para comunicar un siniestro?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "a52464b9-f86a-49e6-b908-9c6e9af4f23c",
+    "data": [
+      {
+        "text": "¿qué tengo que hacer después de un accidente?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "50f39e6b-57bc-4dde-9fdc-656a7a4b8051",
+    "data": [
+      {
+        "text": "he tenido un accidente, ¿qué hago?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "e3bdb300-8a5f-4528-a978-8277ffc7c76d",
+    "data": [
+      {
+        "text": "¿cuánto tarda el perito?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "5409130a-f9a3-4218-91a9-27f5cde7034a",
+    "data": [
+      {
+        "text": "¿cuánto tarda el perito en revisar el coche?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "9fc6bf0a-4690-4f07-a935-3b15b90410ec",
+    "data": [
+      {
+        "text": "¿qué documentos tengo que llevar al peritaje?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "5635fecc-a628-4821-8032-ce845e40a184",
+    "data": [
+      {
+        "text": "¿qué papeles necesito para la cita con el perito?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "9262cb54-61f3-4e72-82a9-02743f368a12",
+    "data": [
+      {
+        "text": "¿tengo vehículo de sustitución?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "4de1a1d6-766f-45d9-b566-e0c732ee0d0d",
+    "data": [
+      {
+        "text": "¿me dan coche de sustitución mientras reparan el mío?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "3017896f-ded2-4612-b0a8-233b62f099d0",
+    "data": [
+      {
+        "text": "¿tengo asistencia en carretera?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "ff28e809-93c9-490a-ab05-55876b072f2a",
+    "data": [
+      {
+        "text": "¿desde qué kilómetro cubre la grúa?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "db546f36-cf00-453a-8ae5-4505620eb1aa",
+    "data": [
+      {
+        "text": "¿el seguro cubre los daños por granizo?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "386c4358-2afe-428d-ada4-dc3af6c18f11",
+    "data": [
+      {
+        "text": "¿me cubre la rotura de lunas?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "f2804a97-82ed-494b-93e3-113f4f14c649",
+    "data": [
+      {
+        "text": "¿está cubierto el parabrisas?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "d34df7fc-5180-4933-ab65-06cbf836a232",
+    "data": [
+      {
+        "text": "¿cubre el robo del vehículo?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "db868d0b-35c5-4b34-86f9-f9d70b1cdc96",
+    "data": [
+      {
+        "text": "¿qué no cubre la póliza?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "b6a6e462-3b7e-497a-ae5f-9c61cdebb9df",
+    "data": [
+      {
+        "text": "¿qué exclusiones tiene el seguro?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "6673e847-d290-4920-974b-266a216aebf0",
+    "data": [
+      {
+        "text": "¿cuándo vence mi póliza?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "f8ad0573-11d6-49a7-860a-173595558d1a",
+    "data": [
+      {
+        "text": "¿qué dice el parte de siniestro?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "4d4b0b24-244f-46a3-9d48-3e59eaa423eb",
+    "data": [
+      {
+        "text": "¿cuál es el límite de indemnización?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "ca9fac9d-e3b0-4179-9ec3-cd9b1e6a653f",
+    "data": [
+      {
+        "text": "¿están cubiertos los daños propios?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "38c70553-b544-4bff-87c6-768fc2b8dbcc",
+    "data": [
+      {
+        "text": "¿me cubre si el coche lo conduce otra persona?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "2328d091-60c1-43b2-89f5-a97abc95c4ed",
+    "data": [
+      {
+        "text": "¿qué pasa si el perito dice que es siniestro total?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "9e6ffbba-d08a-4749-9c1f-29e2e46576b5",
+    "data": [
+      {
+        "text": "¿cuánto tarda en pagarse la indemnización?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "dc274827-256a-4dcd-844a-dcef3a6c2b34",
+    "data": [
+      {
+        "text": "¿cómo funciona el peritaje?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  }
+]

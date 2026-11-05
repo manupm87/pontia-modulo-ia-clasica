@@ -1,0 +1,33 @@
+{
+  "description": "Asistente de voz de Seguros Alonso: citas de peritaje y consultas sobre la póliza.",
+  "language": "es",
+  "shortDescription": "Seguros Alonso",
+  "examples": "",
+  "linkToDocs": "",
+  "displayName": "SegurosAlonso",
+  "disableInteractionLogs": false,
+  "disableStackdriverLogs": false,
+  "defaultTimezone": "Europe/Madrid",
+  "webhook": {
+    "url": "https://TU-TUNEL.devtunnels.ms/webhook",
+    "username": "",
+    "headers": {
+      "X-Tunnel-Skip-AntiPhishing-Page": "true"
+    },
+    "available": true,
+    "useForDomains": false,
+    "cloudFunctionsEnabled": false,
+    "cloudFunctionsInitialized": false
+  },
+  "isPrivate": true,
+  "mlMinConfidence": 0.3,
+  "supportedLanguages": [],
+  "enableOnePlatformApi": true,
+  "onePlatformApiVersion": "v2beta1",
+  "analyzeQueryTextSentiment": false,
+  "enabledKnowledgeBaseNames": [],
+  "knowledgeServiceConfidenceAdjustment": 0.0,
+  "dialogBuilderMode": false,
+  "baseActionPackagesUrl": "",
+  "enableSpellCorrection": false
+}

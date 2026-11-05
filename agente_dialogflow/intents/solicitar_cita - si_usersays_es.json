@@ -1,0 +1,301 @@
+[
+  {
+    "id": "98df0bfb-4cd9-4963-83c4-da2438c7025f",
+    "data": [
+      {
+        "text": "sí",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "4b149ea6-b16b-485c-8cfa-777d11b2d782",
+    "data": [
+      {
+        "text": "si",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "fa2aaf7e-73d2-4e60-bda5-bc53873bf24e",
+    "data": [
+      {
+        "text": "vale",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "67abc3a3-057f-472f-abbb-ec28100fa294",
+    "data": [
+      {
+        "text": "correcto",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "cf59fe4b-6130-414b-a62e-89da48dd1563",
+    "data": [
+      {
+        "text": "adelante",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "ee7244c4-1de6-4784-9dbf-e00bfa5357d3",
+    "data": [
+      {
+        "text": "confirmo",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "0ba11cfc-ff2f-4ac7-8fd4-0acdb74840e6",
+    "data": [
+      {
+        "text": "sí, confírmala",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "835a4190-8dc6-42f8-887d-d30ae1443d39",
+    "data": [
+      {
+        "text": "perfecto",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "898305d5-d4af-4ea2-97a8-a74f89eaa61a",
+    "data": [
+      {
+        "text": "de acuerdo",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "055e6d7f-3265-4c30-9f7e-e9cced187860",
+    "data": [
+      {
+        "text": "está bien",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "56aab2ba-02a0-4edb-bebe-0d6d93767040",
+    "data": [
+      {
+        "text": "sí, por favor",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "f845abd2-eaec-47f3-a0d8-c622f243cb26",
+    "data": [
+      {
+        "text": "todo correcto",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "18a6e418-2cc0-46f0-82da-9ba2e3eccd3b",
+    "data": [
+      {
+        "text": "eso es",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "1aaacc51-2b27-4587-adc3-34fbf322103f",
+    "data": [
+      {
+        "text": "exacto",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "e8261261-d0c8-4625-84dc-aeeee032901f",
+    "data": [
+      {
+        "text": "venga",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "9acc0f07-7abc-4cf5-8d70-de4496fe7f4c",
+    "data": [
+      {
+        "text": "ok",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "f740b32f-291f-40a1-81a5-17aa18041667",
+    "data": [
+      {
+        "text": "claro",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "d7fbba26-5ec2-4763-ab2e-d6a9d8a3de75",
+    "data": [
+      {
+        "text": "sí, resérvala",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "077e34ab-05ee-4f81-8b49-2f99d4c4e2bf",
+    "data": [
+      {
+        "text": "afirmativo",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "2242eaee-89bc-4ad3-bb5a-b29a49032ca9",
+    "data": [
+      {
+        "text": "me parece bien",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "6b045fe4-6199-498a-8b40-82ddbc84bcb6",
+    "data": [
+      {
+        "text": "sí, es correcto",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "f2fd9833-eabe-40ae-8849-9c8963e95ba9",
+    "data": [
+      {
+        "text": "confirma la cita",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "2dcf03ef-6999-4c75-ade0-de5072e8b6a3",
+    "data": [
+      {
+        "text": "sí, adelante",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  }
+]

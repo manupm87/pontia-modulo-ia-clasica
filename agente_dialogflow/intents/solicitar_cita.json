@@ -1,0 +1,139 @@
+{
+  "id": "65200a1a-3bb3-449e-8374-510eeaecdfee",
+  "name": "solicitar_cita",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "solicitar_cita",
+      "affectedContexts": [
+        {
+          "name": "ctx_solicitud_en_curso",
+          "lifespan": 10
+        },
+        {
+          "name": "solicitar_cita-followup",
+          "lifespan": 2
+        }
+      ],
+      "parameters": [
+        {
+          "id": "df3b8f8f-9896-45c9-8eb9-988524f453b1",
+          "name": "matricula",
+          "required": true,
+          "dataType": "@matricula",
+          "value": "$matricula",
+          "defaultValue": "#SOLICITAR_CITA.matricula",
+          "isList": false,
+          "prompts": [
+            {
+              "lang": "es",
+              "value": "¿Cuál es la matrícula del vehículo?"
+            }
+          ],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "a336f2a6-ce0b-46d7-ae31-b82b9c25e685",
+          "name": "fecha",
+          "required": true,
+          "dataType": "@sys.date",
+          "value": "$fecha",
+          "defaultValue": "#SOLICITAR_CITA.fecha",
+          "isList": false,
+          "prompts": [
+            {
+              "lang": "es",
+              "value": "¿Qué día te viene bien para la cita?"
+            }
+          ],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "0b7ce6ea-1204-4dcd-b215-17a232e03421",
+          "name": "franja",
+          "required": true,
+          "dataType": "@franja",
+          "value": "$franja",
+          "defaultValue": "#SOLICITAR_CITA.franja",
+          "isList": false,
+          "prompts": [
+            {
+              "lang": "es",
+              "value": "¿Prefieres por la mañana o por la tarde?"
+            }
+          ],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "5b5c1c57-d48b-481f-9284-c08f6fddf33f",
+          "name": "ciudad",
+          "required": true,
+          "dataType": "@sys.geo-city",
+          "value": "$ciudad",
+          "defaultValue": "#SOLICITAR_CITA.ciudad",
+          "isList": false,
+          "prompts": [
+            {
+              "lang": "es",
+              "value": "¿En qué ciudad quieres que te vea el perito?"
+            }
+          ],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "1dd12791-5359-402e-8ecd-981f45fa4025",
+          "name": "tipo_dano",
+          "required": false,
+          "dataType": "@tipo_dano",
+          "value": "$tipo_dano",
+          "defaultValue": "#SOLICITAR_CITA.tipo_dano",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        }
+      ],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "es",
+          "speech": [
+            "Perfecto, tengo los datos de tu cita de peritaje para el vehículo $matricula en $ciudad. ¿Te la confirmo?"
+          ],
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": true,
+  "fallbackIntent": false,
+  "events": [
+    {
+      "name": "SOLICITAR_CITA"
+    }
+  ],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

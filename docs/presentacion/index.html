@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clara, asistente de voz de Seguros Alonso</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,750&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Plan: informe técnico de una página; columna de lectura de ~70ch con figuras y tablas que se ensanchan.
+       Paleta de aseguradora: petróleo como marca, coral para la voz del cliente, ocre para el proceso offline. */
+    --papel: #f6f5f1;
+    --superficie: #ffffff;
+    --tinta: #1b232c;
+    --tenue: #5a6572;
+    --linea: #dfdcd3;
+    --marca: #0f5c63;
+    --marca-suave: #dcecec;
+    --cliente: #b9492f;
+    --offline: #9a6614;
+    --ok: #2b7a4b;
+    --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+    --texto: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --papel: #12181d; --superficie: #1a2229; --tinta: #e6e9ec; --tenue: #9aa6b2; --linea: #2c3741;
+      --marca: #5cb8be; --marca-suave: #1d3438; --cliente: #ec8a6f; --offline: #dcae5c; --ok: #6cc795;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --papel: #12181d; --superficie: #1a2229; --tinta: #e6e9ec; --tenue: #9aa6b2; --linea: #2c3741;
+    --marca: #5cb8be; --marca-suave: #1d3438; --cliente: #ec8a6f; --offline: #dcae5c; --ok: #6cc795;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--papel); color: var(--tinta); font: 17px/1.6 var(--texto); }
+  main { max-width: 1060px; margin: 0 auto; padding: 48px 20px 80px; display: grid; gap: 56px; }
+  .lectura { max-width: 70ch; }
+  h1, h2, h3 { font-family: var(--display); line-height: 1.15; text-wrap: balance; margin: 0; }
+  h1 { font-size: clamp(32px, 5vw, 48px); font-weight: 750; letter-spacing: -0.02em; }
+  h2 { font-size: 27px; font-weight: 750; letter-spacing: -0.01em; }
+  h3 { font-size: 19px; font-weight: 600; }
+  p { margin: 0; }
+  section { display: grid; gap: 18px; }
+  .antetitulo { font: 600 13px/1 var(--mono); color: var(--marca); letter-spacing: .06em; text-transform: uppercase; }
+  .entradilla { font-size: 19px; color: var(--tinta); }
+  .tenue { color: var(--tenue); }
+  code, .mono { font-family: var(--mono); font-size: .86em; }
+  code { background: var(--marca-suave); color: var(--marca); padding: 1px 6px; border-radius: 5px; }
+  a { color: var(--marca); }
+
+  .cifras { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; }
+  .cifra { background: var(--superficie); border: 1px solid var(--linea); border-radius: 12px; padding: 16px 18px; display: grid; gap: 4px; }
+  .cifra b { font: 750 30px/1 var(--display); color: var(--marca); font-variant-numeric: tabular-nums; }
+  .cifra span { font-size: 14px; color: var(--tenue); }
+
+  figure { margin: 0; display: grid; gap: 8px; }
+  figcaption { font-size: 14px; color: var(--tenue); }
+  video { width: 100%; border-radius: 12px; border: 1px solid var(--linea); background: #0f5c63; }
+  .lamina { background: #fbfaf7; border: 1px solid var(--linea); border-radius: 12px; padding: 10px; overflow-x: auto; }
+  .lamina img { display: block; width: 100%; min-width: 760px; }
+
+  .tabla { overflow-x: auto; border: 1px solid var(--linea); border-radius: 12px; background: var(--superficie); }
+  table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--linea); vertical-align: top; }
+  th { font: 600 12.5px/1.3 var(--mono); color: var(--tenue); text-transform: uppercase; letter-spacing: .04em; background: var(--papel); }
+  tr:last-child td { border-bottom: 0; }
+  td.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .pts { font: 700 15px var(--display); color: var(--marca); white-space: nowrap; }
+
+  .chip { display: inline-block; font: 600 12px/1.6 var(--mono); padding: 0 8px; border-radius: 999px; background: var(--marca-suave); color: var(--marca); white-space: nowrap; }
+  .chip.cliente { background: color-mix(in srgb, var(--cliente) 14%, transparent); color: var(--cliente); }
+  .chip.ok { background: color-mix(in srgb, var(--ok) 15%, transparent); color: var(--ok); }
+
+  .conversacion { display: grid; gap: 10px; }
+  .turno { display: grid; grid-template-columns: 34px 1fr; gap: 12px; align-items: start; }
+  .turno .n { font: 600 13px/32px var(--mono); color: var(--tenue); text-align: right; }
+  .turno .cuerpo { display: grid; gap: 6px; background: var(--superficie); border: 1px solid var(--linea); border-left: 4px solid var(--marca); border-radius: 10px; padding: 12px 16px; }
+  .turno .dice { color: var(--cliente); font-weight: 600; }
+  .turno .meta { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: 13px; color: var(--tenue); }
+  .turno .nota { font-size: 14px; color: var(--tenue); font-style: italic; }
+
+  .docs { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; }
+  .doc { background: var(--superficie); border: 1px solid var(--linea); border-radius: 12px; overflow: hidden; display: grid; grid-template-rows: auto 1fr; }
+  .doc img { width: 100%; aspect-ratio: 3 / 3.4; object-fit: cover; object-position: top; display: block; border-bottom: 1px solid var(--linea); }
+  .doc div { padding: 10px 12px; display: grid; gap: 4px; font-size: 14px; }
+  .doc b { font-family: var(--display); font-size: 15px; }
+
+  .capas { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; counter-reset: capa; }
+  .capa { background: var(--superficie); border: 1px solid var(--linea); border-radius: 12px; padding: 16px; display: grid; gap: 6px; align-content: start; }
+  .capa h3::before { counter-increment: capa; content: counter(capa) " · "; color: var(--marca); }
+  .capa p { font-size: 15px; color: var(--tenue); }
+
+  .barras { display: grid; gap: 10px; background: var(--superficie); border: 1px solid var(--linea); border-radius: 12px; padding: 18px; }
+  .barra { display: grid; grid-template-columns: 190px 1fr 74px; gap: 12px; align-items: center; font-size: 14px; }
+  .pista { height: 12px; border-radius: 6px; background: var(--papel); position: relative; overflow: hidden; }
+  .pista i { position: absolute; inset: 0 auto 0 0; background: var(--marca); border-radius: 6px; }
+  .pista.total i { background: var(--ok); }
+  .barra .v { font-family: var(--mono); font-variant-numeric: tabular-nums; text-align: right; }
+  .limite { font-size: 13px; color: var(--tenue); }
+
+  pre { margin: 0; font: 13px/1.55 var(--mono); background: var(--superficie); border: 1px solid var(--linea); border-radius: 12px; padding: 14px 16px; overflow-x: auto; white-space: pre; }
+  .dos { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px; align-items: start; }
+  ul.limpia { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+  .pendiente { border: 1px dashed var(--offline); border-radius: 12px; padding: 16px 18px; display: grid; gap: 8px; }
+  .pendiente h3 { color: var(--offline); }
+  :focus-visible { outline: 2px solid var(--marca); outline-offset: 2px; }
+  @media (max-width: 560px) { .barra { grid-template-columns: 1fr 64px; } .barra .pista { grid-column: 1 / -1; grid-row: 2; } body { font-size: 16px; } }
+</style>
+</head>
+<body>
+<main>
+
+<header style="display:grid;gap:18px">
+  <div class="antetitulo">Herramientas de IA Clásica · evaluación final</div>
+  <h1>Clara, la asistente de voz de Seguros Alonso</h1>
+  <p class="entradilla lectura">Un cliente que ha tenido un golpe llama, habla con Clara y sale con una cita de peritaje confirmada:
+  matrícula validada con regex, fecha, franja y ciudad comprobadas contra las reglas del negocio y un código de cita leído letra a letra.
+  En la misma llamada puede preguntar por sus coberturas: Clara responde con cinco documentos escaneados que se pasaron por OCR,
+  y si la respuesta no está en ellos, lo dice.</p>
+  <div class="cifras">
+    <div class="cifra"><b>6</b><span>intenciones de negocio + bienvenida y fallback</span></div>
+    <div class="cifra"><b>5</b><span>documentos escaneados, dos manuscritos</span></div>
+    <div class="cifra"><b>1,56 s</b><span>por turno de voz con Dialogflow real (máx. 2,18 s)</span></div>
+    <div class="cifra"><b>117</b><span>tests automáticos en verde</span></div>
+  </div>
+</header>
+
+<section>
+  <div class="antetitulo">Demo</div>
+  <h2>La conversación completa, de voz a voz</h2>
+  <figure>
+    <video src="demo.mp4" controls preload="metadata" playsinline></video>
+    <figcaption>2 min 21 s contra el <b>Dialogflow ES real</b>, con su STT y su TTS nativos en modo audio. La voz del cliente es sintética;
+    cada diapositiva muestra lo que entendió Google, la intención, los parámetros y la latencia del turno.
+    Se genera con <code>DIALOGFLOW_BACKEND=google python -m demo.demo_guiada</code>.</figcaption>
+  </figure>
+</section>
+
+<section>
+  <div class="antetitulo">Enunciado</div>
+  <h2>Qué pide la evaluación y dónde está resuelto</h2>
+  <div class="tabla">
+    <table>
+      <thead><tr><th>Bloque</th><th>Puntos</th><th>Cómo se cumple</th></tr></thead>
+      <tbody>
+        <tr><td>Agente Dialogflow ES</td><td class="pts">4</td><td>6 intenciones significativas, entidad regex <code>@matricula</code>, entidades propias <code>@franja</code> y <code>@tipo_dano</code>, <code>@sys.date</code> y <code>@sys.geo-city</code>. Un único flujo con el contexto <code>ctx_solicitud_en_curso</code> que recoge 4 parámetros obligatorios y termina en un follow-up sí/no. Export listo en <code>dist/SegurosAlonso.zip</code>.</td></tr>
+        <tr><td>Voz extremo a extremo</td><td class="pts">2</td><td>STT y TTS nativos de Dialogflow en modo audio (<code>cliente_voz.py --backend google</code>), o Whisper + TTS neuronal en local. Respuestas en SSML con pausas, énfasis y deletreo. Todos los turnos por debajo de 5 s.</td></tr>
+        <tr><td>OCR, regex y respuesta documental</td><td class="pts">3</td><td>OCR offline con preprocesado OpenCV y modelo de visión (Tesseract como alternativa). Regex que extraen y validan fechas, importes, pólizas, DNI con letra de control y números de siniestro. RAG con ChromaDB y tres capas contra alucinaciones.</td></tr>
+        <tr><td>Documentación, diagrama y vídeo</td><td class="pts">1</td><td>README con caso de uso, diagrama, intenciones, decisiones e instrucciones. Vídeo de 2 min 19 s generado automáticamente.</td></tr>
+        <tr><td>Mejoras opcionales</td><td class="pts">+1,5</td><td>Las seis del enunciado: Telegram con botones y notas de voz, STT/TTS de terceros con clonación de voz, correcciones e interrupciones con eventos, base vectorial, documentos complejos y transferencia a humano.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="antetitulo">Arquitectura</div>
+  <h2>Cómo viaja una frase</h2>
+  <p class="lectura">El usuario habla por un canal (terminal, web o Telegram). El audio se transcribe, Dialogflow decide la intención y
+  llama al webhook FastAPI, que aplica las reglas del negocio o consulta los documentos. La respuesta vuelve como SSML y se sintetiza.
+  El OCR y el índice vectorial se construyen una sola vez, antes de arrancar.</p>
+  <figure>
+    <div class="lamina"><img src="img/arquitectura.svg" alt="Diagrama: usuario, canales, STT, Dialogflow ES, webhook FastAPI, motor documental con ChromaDB y LLM, TTS con SSML, y el proceso offline de OCR"></div>
+  </figure>
+</section>
+
+<section>
+  <div class="antetitulo">Flujo con contexto</div>
+  <h2>Los 11 turnos de la demo</h2>
+  <p class="lectura">Así respondió el sistema en la ejecución que generó el vídeo. Lo que aparece en coral es lo que entendió Whisper.</p>
+  <div class="conversacion">
+    <div class="turno"><span class="n">1</span><div class="cuerpo"><span class="nota">Evento WELCOME</span><p>¡Hola! Soy Clara, la asistente virtual de Seguros Alonso. Puedo pedirte cita con un perito para revisar los daños de tu coche, o resolver dudas sobre tus coberturas y condiciones. ¿En qué te ayudo?</p><div class="meta"><span class="chip">Default Welcome Intent</span>1,15 s</div></div></div>
+    <div class="turno"><span class="n">2</span><div class="cuerpo"><span class="dice">«Hola, quiero pedir cita con un perito para que revise un golpe en mi coche.»</span><p>¿Cuál es la matrícula del vehículo?</p><div class="meta"><span class="chip">solicitar_cita</span><span class="chip cliente">tipo_dano = chapa</span>abre el slot filling</div></div></div>
+    <div class="turno"><span class="n">3</span><div class="cuerpo"><span class="dice">«La matrícula es 1234 BCD.»</span><p>Gracias, Ana. He encontrado tu Seat León. ¿Qué día te viene bien para la cita?</p><div class="meta"><span class="chip">solicitar_cita</span><span class="chip cliente">matricula = 1234 BCD</span>el webhook valida la regex, encuentra la póliza y personaliza la pregunta</div></div></div>
+    <div class="turno"><span class="n">4</span><div class="cuerpo"><span class="dice">«¿Tengo que pagar algo por el peritaje?»</span><p>No, el peritaje es gratuito para ti. Seguimos con tu cita. ¿Qué día te viene bien para la cita?</p><div class="meta"><span class="chip">solicitar_cita</span><span class="chip ok">interrupción</span>responde con los documentos y retoma la pregunta pendiente</div></div></div>
+    <div class="turno"><span class="n">5</span><div class="cuerpo"><span class="dice">«El lunes por la mañana.»</span><p>Perfecto. ¿En qué ciudad quieres que te vea el perito?</p><div class="meta"><span class="chip">solicitar_cita</span><span class="chip cliente">fecha = 2026-11-09</span><span class="chip cliente">franja = manana</span></div></div></div>
+    <div class="turno"><span class="n">6</span><div class="cuerpo"><span class="dice">«En Gijón.»</span><p>Ana, te resumo la solicitud: cita de peritaje para tu Seat León, matrícula 1234 BCD, el lunes 9 de noviembre por la mañana, en Talleres El Musel, Gijón. Motivo: daños de chapa. ¿Confirmo la cita?</p><div class="meta"><span class="chip">solicitar_cita</span><span class="chip">ctx_solicitud_en_curso · 10</span><span class="chip">solicitar_cita-followup · 2</span></div></div></div>
+    <div class="turno"><span class="n">7</span><div class="cuerpo"><span class="dice">«Mejor por la tarde.»</span><p>Ana, te resumo la solicitud: … el lunes 9 de noviembre por la tarde, en Talleres El Musel, Gijón. ¿Confirmo la cita?</p><div class="meta"><span class="chip">corregir_dato → evento SOLICITAR_CITA</span><span class="chip ok">corrección a mitad de flujo</span></div></div></div>
+    <div class="turno"><span class="n">8</span><div class="cuerpo"><span class="dice">«Sí, y confírmala.»</span><p>¡Hecho! Tu cita es la PER-81094. Te atenderá Elena Prieto, del equipo de peritos, el lunes 9 de noviembre a las 18:30 en Talleres El Musel, avenida de la Costa 64, Gijón. Lleva el permiso de circulación, tu DNI y, si lo tienes, el parte amistoso.</p><div class="meta"><span class="chip">solicitar_cita - si</span>revalida y crea la cita; cierra los contextos</div></div></div>
+    <div class="turno"><span class="n">9</span><div class="cuerpo"><span class="dice">«¿Cuánto cuesta al año el todo riesgo sin franquicia?»</span><p>El todo riesgo sin franquicia cuesta 845,90 € al año.</p><div class="meta"><span class="chip">consulta_documental</span>dato leído de la tabla escaneada · 0,42 s</div></div></div>
+    <div class="turno"><span class="n">10</span><div class="cuerpo"><span class="dice">«¿Me cubre el seguro de vida de mi mujer?»</span><p>No dispongo de esa información en la documentación de Seguros Alonso. ¿Quieres que te pase con un agente?</p><div class="meta"><span class="chip">consulta_documental</span><span class="chip ok">no inventa</span></div></div></div>
+    <div class="turno"><span class="n">11</span><div class="cuerpo"><span class="dice">«Vale, quiero hablar con una persona.»</span><p>Claro, te paso con una persona del equipo de atención al cliente. Tu número de ticket es el TCK-514449. Si se corta, puedes llamar al 910 555 222.</p><div class="meta"><span class="chip">transferir_agente</span>ticket y resumen para el agente humano</div></div></div>
+  </div>
+</section>
+
+<section>
+  <div class="antetitulo">Intenciones</div>
+  <h2>Un solo contexto, seis intenciones</h2>
+  <div class="tabla">
+    <table>
+      <thead><tr><th>Intención</th><th>Contexto</th><th>Para qué</th></tr></thead>
+      <tbody>
+        <tr><td><code>solicitar_cita</code></td><td>crea <code>ctx_solicitud_en_curso</code></td><td>Recoge matrícula, fecha, franja y ciudad con slot filling; el webhook interviene en cada turno.</td></tr>
+        <tr><td><code>solicitar_cita - si</code></td><td>follow-up</td><td>Confirma: revalida y crea la cita con perito, hora y dirección.</td></tr>
+        <tr><td><code>solicitar_cita - no</code></td><td>follow-up</td><td>No confirma: deja cambiar un dato o cancela.</td></tr>
+        <tr><td><code>corregir_dato</code></td><td>requiere el contexto</td><td>"Mejor el jueves": fusiona el dato y relanza el evento <code>SOLICITAR_CITA</code>.</td></tr>
+        <tr><td><code>consulta_documental</code></td><td>global, retoma el flujo</td><td>Preguntas sobre coberturas, plazos y condiciones, contestadas con RAG.</td></tr>
+        <tr><td><code>transferir_agente</code></td><td>cierra el contexto</td><td>Pasa a una persona con ticket y lo ya recogido.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="tenue lectura">Regla que solo vigila el webhook: la clase <code>[B-DF-HJ-NP-TV-Z]</code> del ejemplo de clase deja pasar la Q (el rango P-T la incluye). La entidad de Dialogflow se deja permisiva y el webhook aplica la regla exacta: cuatro cifras y tres consonantes sin Ñ ni Q.</p>
+</section>
+
+<section>
+  <div class="antetitulo">OCR offline</div>
+  <h2>Cinco documentos difíciles a propósito</h2>
+  <p class="lectura">Generados como escaneos reales: giro de 0,5 a 2°, papel gris, iluminación irregular, polvo y compresión JPEG.
+  Se enderezan, se limpian con Non-Local Means y se ecualizan con CLAHE antes de pasarlos al modelo de visión
+  <code>qwen2.5vl:7b</code>, que devuelve Markdown y conserva las tablas.</p>
+  <div class="docs">
+    <div class="doc"><img src="img/01_condiciones_generales_auto.jpg" alt="Condiciones generales del seguro de automóvil"><div><b>Condiciones generales</b><span class="tenue">texto corrido</span><span class="mono">CER 2,5 % · 97,9 % palabras</span></div></div>
+    <div class="doc"><img src="img/02_tabla_coberturas.jpg" alt="Tabla de coberturas y precios por modalidad"><div><b>Tabla de coberturas</b><span class="tenue">rejilla con ✓/✗ y primas</span><span class="mono">CER 0,5 % · 100 % palabras</span></div></div>
+    <div class="doc"><img src="img/03_guia_peritaje_y_asistencia.jpg" alt="Guía de peritaje y asistencia a dos columnas"><div><b>Guía de peritaje</b><span class="tenue">folleto a dos columnas</span><span class="mono">CER 0,5 % · 98,6 % palabras</span></div></div>
+    <div class="doc"><img src="img/04_condiciones_particulares_SA-104233.jpg" alt="Condiciones particulares de la póliza SA-104233 con campos manuscritos"><div><b>Condiciones particulares</b><span class="tenue">formulario manuscrito</span><span class="mono">CER 10,2 % · 95,1 % palabras</span></div></div>
+    <div class="doc"><img src="img/05_parte_siniestro_manuscrito.jpg" alt="Parte de siniestro rellenado a mano con sello"><div><b>Parte de siniestro</b><span class="tenue">manuscrito con sello</span><span class="mono">CER 32,8 % · 84,9 % palabras</span></div></div>
+  </div>
+  <p class="tenue lectura">El CER de los formularios sube porque el modelo los reordena como tablas y omite cabecera y pie, no porque lea mal la letra: casi todas las palabras están.
+  Sobre el texto se aplican regex que extraen y validan campos: DNI 12345678Z con su letra de control, la póliza SA-104233, el siniestro SIN-2026-004512,
+  fechas de calendario reales e importes como 612,40 €. Las confusiones del OCR (O/0, l/1, S/5, B/8) se corrigen solo en los candidatos y solo si el resultado valida.</p>
+</section>
+
+<section>
+  <div class="antetitulo">Respuesta documental</div>
+  <h2>Tres capas para no inventar</h2>
+  <div class="capas">
+    <div class="capa"><h3>Umbral de similitud</h3><p>42 fragmentos con embeddings bge-m3 en ChromaDB. Si ninguno supera 0,40 de similitud, la respuesta es "no consta" sin llamar al LLM. Corta las preguntas ajenas, como la capital de Francia.</p></div>
+    <div class="capa"><h3>Evidencia literal</h3><p>El LLM devuelve primero una cita literal del contexto y luego la respuesta, o <code>NO_CONSTA</code>. Si la cita no está en los fragmentos, se descarta.</p></div>
+    <div class="capa"><h3>Cifras comprobadas</h3><p>Cualquier número o importe de la respuesta tiene que aparecer en el contexto o en la pregunta. Si no, se trata como no respondible.</p></div>
+  </div>
+  <p class="tenue lectura">Calibrado con 22 preguntas con respuesta y 14 sin ella: las 36 salen bien, con 0,30 s de media. Si el modelo falla o tarda, hay timeout y <code>try/except</code>, y Clara ofrece pasar con un agente.</p>
+</section>
+
+<section>
+  <div class="antetitulo">Voz</div>
+  <h2>SSML y latencia</h2>
+  <div class="dos">
+    <div style="display:grid;gap:10px">
+      <p>El cliente de voz avisa con <code>{"canal": "voz"}</code> y el webhook responde en SSML. Para chat y Telegram manda texto plano.</p>
+<pre>&lt;speak&gt;¡Hecho! &lt;break time="200ms"/&gt;
+Tu cita es la &lt;say-as interpret-as="characters"&gt;PER&lt;/say-as&gt;
+&lt;break time="150ms"/&gt;&lt;say-as interpret-as="characters"&gt;81094&lt;/say-as&gt;.
+…
+&lt;prosody rate="90%"&gt;Lleva el permiso de circulación,
+tu DNI y, si lo tienes, el parte amistoso.&lt;/prosody&gt;
+&lt;emphasis level="moderate"&gt;¿Te ayudo con algo más?&lt;/emphasis&gt;
+&lt;/speak&gt;</pre>
+    </div>
+    <div class="barras" aria-label="Latencia típica de un turno en segundos, escala de 0 a 5">
+      <div class="barra"><span>STT Whisper (GPU)</span><div class="pista"><i style="width:2%"></i></div><span class="v">0,09 s</span></div>
+      <div class="barra"><span>Dialogflow + webhook</span><div class="pista"><i style="width:1%"></i></div><span class="v">&lt; 0,01 s</span></div>
+      <div class="barra"><span>… con consulta RAG</span><div class="pista"><i style="width:8%"></i></div><span class="v">0,42 s</span></div>
+      <div class="barra"><span>TTS neuronal con SSML</span><div class="pista"><i style="width:20%"></i></div><span class="v">0,99 s</span></div>
+      <div class="barra"><span><b>Turno medio</b></span><div class="pista total"><i style="width:25.8%"></i></div><span class="v"><b>1,29 s</b></span></div>
+      <div class="barra"><span><b>Peor turno</b></span><div class="pista total"><i style="width:49%"></i></div><span class="v"><b>2,45 s</b></span></div>
+      <span class="limite">Escala hasta 5 s, el límite del enunciado. RTX 5090, TTS sin caché.</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="antetitulo">Mejoras opcionales</div>
+  <h2>Las seis del enunciado</h2>
+  <div class="tabla">
+    <table>
+      <thead><tr><th>Mejora</th><th>Implementación</th></tr></thead>
+      <tbody>
+        <tr><td>Telegram con respuestas enriquecidas</td><td><code>telegram_bot.py</code>: texto, notas de voz de ida y vuelta, botones inline. El webhook emite además el payload <code>TELEGRAM</code> para la integración nativa.</td></tr>
+        <tr><td>STT/TTS de terceros y voz clonada</td><td>Whisper en GPU; TTS edge, ElevenLabs con clonación instantánea y XTTS-v2 local a partir de 30 s de tu voz.</td></tr>
+        <tr><td>Interrupciones y corrección con eventos</td><td><code>corregir_dato</code> + <code>followupEventInput</code>; preguntas a mitad del flujo se responden y se retoma.</td></tr>
+        <tr><td>Base de datos vectorial</td><td>ChromaDB con embeddings bge-m3 y recuperación por palabras de respaldo.</td></tr>
+        <tr><td>Documentos complejos</td><td>Tabla con rejilla, dos columnas, formulario manuscrito y parte de siniestro a mano.</td></tr>
+        <tr><td>Transferencia a agente humano</td><td><code>transferir_agente</code> con ticket, resumen y <code>liveAgentHandoff</code>.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="lectura">Probarlo contra Google destapó tres cosas que el emulador no hacía y que ya están resueltas: Dialogflow abandona el slot filling si una pregunta encaja con otra intención (el webhook guarda lo recogido en el contexto y retoma); los contextos de salida de una intención reciben también sus parámetros vacíos (copia <code>guardado_*</code> en el contexto); y el STT de Google perdía las letras de la matrícula (pistas de adaptación, silencio final y normalización de "1234 be ce de" en el webhook).</p>
+  <p class="lectura">Además, un <b>emulador local de Dialogflow ES</b> carga el mismo export del agente y reproduce el slot filling, los contextos, los follow-ups y los eventos.
+  Así todo se prueba sin cuenta de Google, y con <code>DIALOGFLOW_BACKEND=google</code> funciona igual contra el agente real.</p>
+</section>
+
+<section>
+  <div class="antetitulo">Estado</div>
+  <h2>Qué falta para la entrega</h2>
+  <div class="pendiente">
+    <h3>Estado de la entrega</h3>
+    <ul class="limpia">
+      <li>Hecho: agente importado en Dialogflow ES (proyecto <code>segurosalonso-al9y</code>), webhook expuesto por túnel y cuenta de servicio con el rol Dialogflow API Client. El guion completo funciona por voz con el STT y el TTS de Google.</li>
+      <li>Grabar el vídeo de entrega hablando tú, siguiendo el mismo guion.</li>
+      <li>Voz clonada XTTS: grabar tu voz y aceptar la licencia no comercial CPML de Coqui en la primera descarga del modelo.</li>
+      <li>Telegram: crear el bot con @BotFather y poner <code>TELEGRAM_BOT_TOKEN</code>.</li>
+    </ul>
+  </div>
+</section>
+
+</main>
+</body>
+</html>

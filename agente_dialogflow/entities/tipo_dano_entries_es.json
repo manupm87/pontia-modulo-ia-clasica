@@ -1,0 +1,45 @@
+[
+  {
+    "value": "chapa",
+    "synonyms": [
+      "chapa",
+      "golpe",
+      "abolladura",
+      "rayón",
+      "carrocería",
+      "arañazo",
+      "bollo",
+      "golpe en la puerta"
+    ]
+  },
+  {
+    "value": "lunas",
+    "synonyms": [
+      "lunas",
+      "luna",
+      "parabrisas",
+      "cristal",
+      "luneta",
+      "ventanilla"
+    ]
+  },
+  {
+    "value": "mecanica",
+    "synonyms": [
+      "mecanica",
+      "motor",
+      "avería",
+      "mecánica",
+      "embrague",
+      "frenos"
+    ]
+  },
+  {
+    "value": "granizo",
+    "synonyms": [
+      "granizo",
+      "pedrisco",
+      "granizada"
+    ]
+  }
+]

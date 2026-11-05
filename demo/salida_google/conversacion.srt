@@ -1,0 +1,83 @@
+1
+00:00:00,000 --> 00:00:11,724
+Clara: ¡Hola! Soy Clara, la asistente virtual de Seguros Alonso. Puedo pedirte cita con un perito para revisar los daños de tu coche, o resolver dudas sobre tus coberturas y condiciones. ¿En qué te ayudo?
+
+2
+00:00:12,424 --> 00:00:16,382
+Cliente: hola quiero pedir cita con un perito para que revise un golpe en mi coche
+
+3
+00:00:16,782 --> 00:00:18,690
+Clara: ¿Cuál es la matrícula del vehículo?
+
+4
+00:00:19,390 --> 00:00:22,082
+Cliente: la matrícula es 1234 be ce de
+
+5
+00:00:22,482 --> 00:00:27,562
+Clara: Gracias, Ana. He encontrado tu Seat León. ¿Qué día te viene bien para la cita?
+
+6
+00:00:28,262 --> 00:00:30,090
+Cliente: tengo que pagar algo por el peritaje
+
+7
+00:00:30,490 --> 00:00:36,249
+Clara: No, el peritaje es gratuito para ti. Seguimos con tu cita. ¿Qué día te viene bien para la cita?
+
+8
+00:00:36,949 --> 00:00:38,172
+Cliente: el lunes por la mañana
+
+9
+00:00:38,572 --> 00:00:41,663
+Clara: Perfecto. ¿En qué ciudad quieres que te vea el perito?
+
+10
+00:00:42,363 --> 00:00:43,045
+Cliente: en Gijón
+
+11
+00:00:43,445 --> 00:00:58,974
+Clara: Ana, te resumo la solicitud: cita de peritaje para tu Seat León, matrícula 1234 BCD, el lunes 9 de noviembre por la mañana, en Talleres El Musel, Gijón. Motivo: daños de chapa. ¿Confirmo la cita?
+
+12
+00:00:59,674 --> 00:01:00,761
+Cliente: mejor por la tarde
+
+13
+00:01:01,161 --> 00:01:16,587
+Clara: Ana, te resumo la solicitud: cita de peritaje para tu Seat León, matrícula 1234 BCD, el lunes 9 de noviembre por la tarde, en Talleres El Musel, Gijón. Motivo: daños de chapa. ¿Confirmo la cita?
+
+14
+00:01:17,287 --> 00:01:18,613
+Cliente: sí y confirma la
+
+15
+00:01:19,013 --> 00:01:39,977
+Clara: ¡Hecho! Tu cita es la PER-81094. Te atenderá Elena Prieto, del equipo de peritos, el lunes 9 de noviembre a las 18:30 en Talleres El Musel, avenida de la Costa 64, Gijón. Lleva el permiso de circulación, tu DNI y, si lo tienes, el parte amistoso. ¿Te ayudo con algo más?
+
+16
+00:01:40,677 --> 00:01:43,145
+Cliente: cuánto cuesta el año el todo riesgo sin franquicia
+
+17
+00:01:43,545 --> 00:01:49,243
+Clara: El todo riesgo sin franquicia cuesta 845,90 € al año.
+
+18
+00:01:49,943 --> 00:01:51,790
+Cliente: me cubre el seguro de be de de mi mujer
+
+19
+00:01:52,190 --> 00:01:57,747
+Clara: No dispongo de esa información en la documentación de Seguros Alonso. ¿Quieres que te pase con un agente?
+
+20
+00:01:58,447 --> 00:02:00,531
+Cliente: vale quiero hablar con una persona
+
+21
+00:02:00,931 --> 00:02:20,810
+Clara: Claro, te paso con una persona del equipo de atención al cliente. Tu número de ticket es el TCK-789839. Si se corta, puedes llamar al 910 555 222, de lunes a viernes de 9 a 14 y de 16 a 19 horas.

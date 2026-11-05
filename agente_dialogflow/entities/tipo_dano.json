@@ -1,0 +1,9 @@
+{
+  "id": "692f2e77-3fdc-428e-af97-6b0ec9662c71",
+  "name": "tipo_dano",
+  "isOverridable": true,
+  "isEnum": false,
+  "isRegexp": false,
+  "automatedExpansion": false,
+  "allowFuzzyExtraction": false
+}
