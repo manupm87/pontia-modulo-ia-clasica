@@ -15,6 +15,18 @@ de una póliza y un parte de siniestro **manuscrito**) que se procesaron offline
 no está en los documentos, lo dice en lugar de inventarlo. Se puede interrumpir el flujo con una pregunta,
 corregir un dato a mitad ("mejor por la tarde") o pedir hablar con una persona.
 
+## Vídeo de la demo
+
+Conversación completa por voz contra el **Dialogflow ES real**, con su reconocimiento y su síntesis de voz nativos
+(2 min 21 s): cita de peritaje con contexto, interrupción, corrección a mitad de flujo, confirmación, preguntas
+respondidas con los documentos, una pregunta sin respuesta en ellos y paso a una persona. La voz del cliente es
+sintética; Google la reconoce como si fuera un micrófono.
+
+https://github.com/user-attachments/assets/b403b8a7-92f5-440d-aa54-e3bc523fe4c6
+
+Fichero en el repositorio: [`demo/salida_google/demo.mp4`](demo/salida_google/demo.mp4) · informe de latencias por
+turno: [`demo/salida_google/informe.md`](demo/salida_google/informe.md).
+
 ## Arquitectura
 
 ![Arquitectura](docs/arquitectura.svg)
@@ -82,7 +94,7 @@ comprobaciones de evidencia y cifras. Las 36 preguntas de calibración salen bie
 **Con Dialogflow ES real y su voz nativa** (`DIALOGFLOW_BACKEND=google python -m demo.demo_guiada --salida demo/salida_google`):
 los 11 turnos van a la intención correcta con el STT y el TTS de Google en modo audio, **media 1,56 s y máximo 2,18 s
 por turno** (incluye STT, webhook con RAG y TTS). El TTS nativo interpreta el SSML: no lee las etiquetas y deletrea el
-código de la cita. Vídeo: `demo/salida_google/demo.mp4` (2 min 21 s); informe: `demo/salida_google/informe.md`.
+código de la cita. Vídeo: [más arriba](#vídeo-de-la-demo).
 La versión 100 % local (emulador + Whisper + TTS neuronal) está en `demo/salida/`.
 
 **Matrículas por voz.** El STT de Google, sin ayuda, transcribía "1234 BCD" como "1234" y se perdían las letras.
