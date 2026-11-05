@@ -147,7 +147,22 @@ RESPONDIBLES = [
     ("¿Cuánto tiempo tengo para comunicar un siniestro?", "7 días", "01_"),
     ("¿Qué tengo que llevar al peritaje?", "DNI", "03_"),
     ("¿Cuánto cuesta el seguro a terceros ampliado?", "398,50", "02_"),
+    # Póliza concreta: la prima real de Ana (612,40 €), no la tarifa de catálogo (589 €)
+    ("¿Cuánto cuesta el todo riesgo con franquicia para el Seat León de Ana?", "612,40", "04_"),
 ]
+
+
+@requiere_ollama
+def test_poliza_concreta_no_usa_la_tarifa_general(motor):
+    r = motor.responder("¿Cuánto paga Ana al año por su seguro?")
+    assert "612,40" in r.texto and "589" not in r.texto, r.texto
+
+
+@requiere_ollama
+def test_no_inventa_datos_del_cliente(motor):
+    """La póliza solo dice que no hay conductores ocasionales: nada de permisos ni edades."""
+    r = motor.responder("¿El seguro cubre a mi hijo de 18 años si conduce mi coche?")
+    assert "permiso" not in r.texto.lower(), r.texto
 
 NO_RESPONDIBLES = [
     "¿Cubre el seguro de vida?",

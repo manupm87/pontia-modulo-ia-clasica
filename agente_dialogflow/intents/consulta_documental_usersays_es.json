@@ -401,5 +401,161 @@
     "count": 0,
     "lang": "es",
     "updated": 0
+  },
+  {
+    "id": "4ba05b6b-d7cd-4436-b904-27662d8d25bf",
+    "data": [
+      {
+        "text": "¿Cuánto cuesta al año el todo riesgo sin franquicia?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "a26e915b-73b3-4102-8699-fd8f75c5df41",
+    "data": [
+      {
+        "text": "¿Cuánto cuesta el todo riesgo con franquicia?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "d7924c6d-9e23-451d-8319-c90faf174bc8",
+    "data": [
+      {
+        "text": "cuánto cuesta el año el todo riesgo",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "fe8f07e9-7940-4787-911a-cf1cc95601e6",
+    "data": [
+      {
+        "text": "¿Qué precio tiene el seguro a terceros?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "a083cb7a-9dbf-48cc-8e6e-bb3cffbc9b6a",
+    "data": [
+      {
+        "text": "¿Cuánto vale el terceros ampliado al año?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "dca943bd-4e51-4de7-ae20-1ce2608ece0b",
+    "data": [
+      {
+        "text": "¿Cuál es la prima anual del todo riesgo?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "4a36af27-4dab-47c9-ace5-13c5ec7cfdbe",
+    "data": [
+      {
+        "text": "precio del seguro a todo riesgo",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "0e42b539-bf26-4a29-9376-6f4d6fe76302",
+    "data": [
+      {
+        "text": "¿Cuánto pago al año por el seguro?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "a9c91b1a-1adb-44bb-b828-6d7c21e482c8",
+    "data": [
+      {
+        "text": "¿Qué tarifa tiene el terceros básico?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "720aedfc-d32a-495c-8747-c543710f1195",
+    "data": [
+      {
+        "text": "¿Cuánto me costaría pasarme a todo riesgo?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "d1e4e7fa-19a2-431d-8912-2146892a3cd4",
+    "data": [
+      {
+        "text": "¿Tenéis seguro de moto?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "b0f4b3e5-e36d-432f-8ab5-857f6c81349e",
+    "data": [
+      {
+        "text": "¿Cuánto cuesta un seguro de hogar?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
   }
 ]

@@ -18,11 +18,11 @@ corregir un dato a mitad ("mejor por la tarde") o pedir hablar con una persona.
 ## Vídeo de la demo
 
 Conversación completa por voz contra el **Dialogflow ES real**, con su reconocimiento y su síntesis de voz nativos
-(2 min 21 s): cita de peritaje con contexto, interrupción, corrección a mitad de flujo, confirmación, preguntas
+(2 min 23 s): cita de peritaje con contexto, interrupción, corrección a mitad de flujo, confirmación, preguntas
 respondidas con los documentos, una pregunta sin respuesta en ellos y paso a una persona. La voz del cliente es
 sintética; Google la reconoce como si fuera un micrófono.
 
-https://github.com/user-attachments/assets/b403b8a7-92f5-440d-aa54-e3bc523fe4c6
+https://github.com/user-attachments/assets/6570c0aa-fc76-495e-907b-b1235b2ddedf
 
 Fichero en el repositorio: [`demo/salida_google/demo.mp4`](demo/salida_google/demo.mp4) · informe de latencias por
 turno: [`demo/salida_google/informe.md`](demo/salida_google/informe.md).
@@ -43,7 +43,14 @@ turno: [`demo/salida_google/informe.md`](demo/salida_google/informe.md).
 
 ## Intenciones
 
-Mapa: un único contexto de flujo (`ctx_solicitud_en_curso`) más el follow-up de confirmación.
+Mapa: un único flujo con un único contexto propio, `ctx_solicitud_en_curso`, que abren `solicitar_cita` y cierra
+la confirmación. `solicitar_cita-followup` no es un segundo flujo: es el contexto que Dialogflow crea automáticamente
+para las intenciones de seguimiento sí/no, y solo vive los dos turnos de la confirmación.
+
+**Recuento.** Las 6 intenciones significativas son `solicitar_cita`, sus dos seguimientos `- si` y `- no`,
+`consulta_documental`, `corregir_dato` y `transferir_agente` (además de bienvenida y fallback). Las cuatro primeras
+cubren el mínimo del enunciado (petición del servicio, recogida de datos, confirmación sí/no y consulta documental);
+`corregir_dato` y `transferir_agente` son las de las mejoras opcionales.
 
 | Intención | Contexto entrada → salida | Propósito |
 | --- | --- | --- |
@@ -92,7 +99,7 @@ comprobaciones de evidencia y cifras. Las 36 preguntas de calibración salen bie
 | **Turno completo** | **media 1,29 s · máximo 2,45 s** (objetivo < 5 s) |
 
 **Con Dialogflow ES real y su voz nativa** (`DIALOGFLOW_BACKEND=google python -m demo.demo_guiada --salida demo/salida_google`):
-los 11 turnos van a la intención correcta con el STT y el TTS de Google en modo audio, **media 1,56 s y máximo 2,18 s
+los 11 turnos van a la intención correcta con el STT y el TTS de Google en modo audio, **media 1,66 s y máximo 2,05 s
 por turno** (incluye STT, webhook con RAG y TTS). El TTS nativo interpreta el SSML: no lee las etiquetas y deletrea el
 código de la cita. Vídeo: [más arriba](#vídeo-de-la-demo).
 La versión 100 % local (emulador + Whisper + TTS neuronal) está en `demo/salida/`.
@@ -102,11 +109,16 @@ Tres medidas lo resuelven: pistas de adaptación del STT (`speech_contexts` con 
 de…), medio segundo de silencio al final del audio (sin él se cortaba la última letra) y, en el webhook, una
 normalización del texto reconocido ("1234 be ce de", "1.234 BCD", "cinco seis siete ocho efe ge hache" → "1234 BCD",
 "5678 FGH") que rescata la matrícula cuando la entidad regex no la reconoce y la reinyecta con el evento
-`SOLICITAR_CITA`. Efecto secundario conocido: con las pistas de letras, "vida" se reconoció una vez como "be de"
-(la respuesta siguió siendo correcta).
+`SOLICITAR_CITA`. Efecto secundario conocido: con las pistas de letras, "vida" se reconoció como "be de", por eso la
+pregunta sin respuesta del guion es ahora "¿tenéis también seguro de moto?".
+
+**Respuestas sueltas mal clasificadas.** Tras una interrupción, Dialogflow mandó alguna vez "el lunes por la mañana"
+al fallback en lugar de a `corregir_dato`. Además de añadir respuestas sueltas a sus frases de entrenamiento, el
+fallback hace de red de seguridad: si hay una cita a medias y la frase no es una pregunta, extrae fecha, franja y
+ciudad con el mismo extractor de entidades en español del emulador y sigue el flujo con el evento `SOLICITAR_CITA`.
 
 
-**Tests:** 117 pruebas con pytest (negocio, webhook, emulador, regex del OCR, RAG contra Ollama, voz, Telegram).
+**Tests:** 123 pruebas con pytest (negocio, webhook, emulador, regex del OCR, RAG contra Ollama, voz, Telegram).
 
 
 ## Decisiones técnicas
@@ -170,6 +182,14 @@ no consta sin llamar al LLM. (2) El prompt obliga a usar solo el CONTEXTO y a co
 En todos los casos el mensaje es explícito: "No dispongo de esa información en la documentación… ¿Quieres que
 te pase con un agente?".
 
+Una revisión independiente encontró dos alucinaciones que esas capas no paraban, y ya están corregidas con test:
+- **Tarifa general en vez de la póliza.** "¿Cuánto cuesta el todo riesgo para el Seat León de Ana?" daba 589 € (tarifa
+  de catálogo, que sí está en los documentos y por eso pasaba el control de cifras) en vez de los 612,40 € de su póliza.
+  Si la pregunta habla de una póliza concreta (nombre, "mi póliza", su coche o matrícula), el contexto lleva sus
+  condiciones particulares y no la tabla general de precios.
+- **Datos del cliente deducidos.** A "¿cubre a mi hijo de 18 años?" el modelo añadía que "carece de permiso de
+  conducir", algo que no dice ningún documento. El prompt prohíbe ahora deducir datos del cliente que no estén escritos.
+
 **Si el modelo tarda o falla.** Dialogflow corta el webhook a los 5 s. El OCR va offline y el índice se carga al
 arrancar, el LLM se precalienta, la llamada tiene timeout (3,5 s) y `try/except`, y el manejador entero está
 protegido: ante cualquier error se responde algo útil ("he tenido un problema técnico, ¿te paso con un agente?").
@@ -180,17 +200,28 @@ frases de entrenamiento, entidades regex/propias/fecha/ciudad, contextos con vid
 follow-ups, eventos y `followupEventInput`, con la petición al webhook en el formato real de Dialogflow ES v2.
 Con `DIALOGFLOW_BACKEND=google` todo funciona igual contra el agente real: el guion completo de la demo se ha probado en la consola de Dialogflow ES con el webhook expuesto por un túnel (todas las intenciones correctas, webhook en ≤ 0,6 s).
 
-## Mejoras opcionales implementadas
+## Mejoras opcionales
 
-| Mejora del enunciado | Cómo está resuelta |
+Probadas de extremo a extremo:
+
+| Mejora del enunciado | Cómo está resuelta | Evidencia |
+| --- | --- | --- |
+| Interrupciones y corrección a mitad de flujo con eventos | `corregir_dato` + `followupEventInput: SOLICITAR_CITA`; las preguntas en mitad de la recogida de datos o de la confirmación se responden y el flujo se retoma | Turnos 4 y 7 del vídeo, con Dialogflow real |
+| Transferencia a agente humano | `transferir_agente`: ticket, resumen de lo recogido, `liveAgentHandoff` en el payload y teléfono de atención | Turno 11 del vídeo |
+| Base de datos vectorial | ChromaDB + embeddings bge-m3 (Ollama), con recuperación por palabras como respaldo | Turnos 4, 9 y 10; `tests/test_rag.py` |
+| Documentos complejos | Tabla con rejilla, folleto a 2 columnas, formulario con campos manuscritos y casillas, parte de siniestro manuscrito con sello. Los documentos son **sintéticos** (generados con `ocr/generar_documentos.py` y "escaneados" con giro, ruido, desenfoque y JPEG) para conocer su texto real y medir el OCR | CER/WER por documento en *Resultados medidos* |
+| STT/TTS de terceros | Whisper (faster-whisper en GPU) y TTS neuronal edge con SSML (se trocea en segmentos con su velocidad y tono, y las pausas se insertan como silencio) | Vídeo local `demo/salida/demo.mp4` y demo web |
+
+Implementadas pero **no probadas con el servicio real** (falta la cuenta o la muestra de voz):
+
+| Mejora | Estado |
 | --- | --- |
-| Integración con Telegram con respuestas enriquecidas | `telegram_bot.py`: texto, **notas de voz** (Whisper → Dialogflow → nota de voz con TTS) y botones *inline* (Sí/No, accesos rápidos). El webhook también emite el payload `TELEGRAM` para la integración nativa de Dialogflow |
-| STT/TTS de terceros y clonación de voz | Whisper (faster-whisper en GPU); TTS neuronal edge, **ElevenLabs** (incluida la clonación instantánea `POST /v1/voices/add`) y **XTTS-v2 local** con voz clonada a partir de 30 s grabados con `python -m voz.clonar_voz grabar` (XTTS va en un entorno aparte, `.venv-xtts`, y la primera vez pide aceptar la licencia no comercial CPML de Coqui al descargar el modelo). El SSML se respeta en todos: se trocea en segmentos con su velocidad/tono y las pausas se insertan como silencio |
-| Interrupciones y corrección a mitad de flujo con eventos | `corregir_dato` + `followupEventInput: SOLICITAR_CITA`; preguntas en mitad del *slot filling* o de la confirmación se responden y el flujo se retoma |
-| Base de datos vectorial | ChromaDB + embeddings bge-m3 (Ollama), con recuperación por palabras como respaldo |
-| Documentos complejos | Tabla con rejilla, folleto a 2 columnas, formulario con campos manuscritos y casillas, parte de siniestro manuscrito con sello, todos "escaneados" (giro, ruido, desenfoque, JPEG) |
-| Transferencia a agente humano | `transferir_agente`: ticket, resumen de lo recogido, `liveAgentHandoff` en el payload y teléfono de atención |
-| Además | Emulador local de Dialogflow ES para probar sin nube, demo web con panel interno (intención, parámetros, contextos, SSML, latencias) y demo guiada que genera el vídeo |
+| Telegram con respuestas enriquecidas | `telegram_bot.py`: texto, notas de voz (Whisper → Dialogflow → nota de voz) y botones *inline*; el webhook emite además el payload `TELEGRAM` para la integración nativa. Probado con un cliente de Dialogflow simulado (`tests/test_telegram.py`), no con un bot real: hace falta `TELEGRAM_BOT_TOKEN` |
+| ElevenLabs y clonación instantánea | Backend completo contra la API REST (`voz/tts.py`, `voz/clonar_voz.py elevenlabs`). Sin probar: hace falta `ELEVENLABS_API_KEY` |
+| Clonación de voz propia con XTTS-v2 | Entorno `.venv-xtts` instalado y servidor `voz/xtts_servidor.py`. **No hecha** con la voz del autor: falta grabar `voz/muestras/referencia.wav` (`python -m voz.clonar_voz grabar`) y aceptar la licencia no comercial CPML de Coqui en la primera descarga del modelo. La única muestra incluida, `referencia_demo.wav`, es una voz sintética |
+
+Además: emulador local de Dialogflow ES para probar sin nube, demo web con panel interno (intención, parámetros,
+contextos, SSML, latencias) y demo guiada que genera el vídeo.
 
 
 ## Cómo ejecutarlo
@@ -236,6 +267,9 @@ ollama pull qwen2.5vl:7b
 ```bash
 .venv\Scripts\python -m ocr.indexar
 ```
+
+El índice vectorial (`data/chroma/`) no se versiona porque cambia en cada ejecución: si no existe, el webhook lo
+construye solo al arrancar a partir de `data/documentos.json` (unos segundos con Ollama).
 
 ### 3. Webhook
 

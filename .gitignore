@@ -15,3 +15,5 @@ voz/muestras/referencia.wav
 demo/salida/diapositivas/
 demo/salida_google/*.wav
 demo/salida_google/diapositivas/
+data/chroma/
+docs/presentacion/demo.mp4

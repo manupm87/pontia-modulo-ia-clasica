@@ -502,5 +502,241 @@
     "count": 0,
     "lang": "es",
     "updated": 0
+  },
+  {
+    "id": "ef497f97-9ebb-45fb-9cdc-d4f0a95b22d6",
+    "data": [
+      {
+        "text": "el lunes",
+        "meta": "@sys.date",
+        "alias": "fecha",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "por la mañana",
+        "meta": "@franja",
+        "alias": "franja",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "4d24aa4a-bf15-42d8-a98b-8d132cae85d1",
+    "data": [
+      {
+        "text": "el martes",
+        "meta": "@sys.date",
+        "alias": "fecha",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "por la tarde",
+        "meta": "@franja",
+        "alias": "franja",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "ee0a4177-e904-4e95-bddd-1debf7ef0c79",
+    "data": [
+      {
+        "text": "mañana",
+        "meta": "@sys.date",
+        "alias": "fecha",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "por la tarde",
+        "meta": "@franja",
+        "alias": "franja",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "0984b497-af90-4ce1-877b-795a8dee406b",
+    "data": [
+      {
+        "text": "el jueves",
+        "meta": "@sys.date",
+        "alias": "fecha",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "e2a8c86f-382d-40c4-8bd8-db20924fb102",
+    "data": [
+      {
+        "text": "el 20 de noviembre",
+        "meta": "@sys.date",
+        "alias": "fecha",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "0a8e368e-5fac-48a4-b692-1963cd785c57",
+    "data": [
+      {
+        "text": "pues ",
+        "userDefined": false
+      },
+      {
+        "text": "el viernes",
+        "meta": "@sys.date",
+        "alias": "fecha",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "a primera hora",
+        "meta": "@franja",
+        "alias": "franja",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "333ae1ef-18e2-4785-9930-1208e3816956",
+    "data": [
+      {
+        "text": "por la mañana",
+        "meta": "@franja",
+        "alias": "franja",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "7a725420-1f31-4d9c-949a-1772645743a1",
+    "data": [
+      {
+        "text": "por la tarde",
+        "meta": "@franja",
+        "alias": "franja",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "78fe9d72-ed9c-4b52-8acd-0b1166f2ba4a",
+    "data": [
+      {
+        "text": "en ",
+        "userDefined": false
+      },
+      {
+        "text": "Madrid",
+        "meta": "@sys.geo-city",
+        "alias": "ciudad",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "f873073f-0a0c-4e2a-9a0c-f348ebe68ac0",
+    "data": [
+      {
+        "text": "en ",
+        "userDefined": false
+      },
+      {
+        "text": "Oviedo",
+        "meta": "@sys.geo-city",
+        "alias": "ciudad",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "4e9040df-9d6c-46fb-af9b-180de202be38",
+    "data": [
+      {
+        "text": "Sevilla",
+        "meta": "@sys.geo-city",
+        "alias": "ciudad",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "c48a187b-8d57-4123-ba6b-4ddff7901bb3",
+    "data": [
+      {
+        "text": "me viene bien ",
+        "userDefined": false
+      },
+      {
+        "text": "el miércoles",
+        "meta": "@sys.date",
+        "alias": "fecha",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
   }
 ]
