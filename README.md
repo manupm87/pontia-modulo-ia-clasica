@@ -82,7 +82,7 @@ comprobaciones de evidencia y cifras. Las 36 preguntas de calibración salen bie
 El informe completo de cada turno está en `demo/salida/informe.md` y el vídeo en `demo/salida/demo.mp4`
 (2 min 19 s).
 
-**Tests:** 112 pruebas con pytest (negocio, webhook, emulador, regex del OCR, RAG contra Ollama, voz, Telegram).
+**Tests:** 114 pruebas con pytest (negocio, webhook, emulador, regex del OCR, RAG contra Ollama, voz, Telegram).
 
 
 ## Decisiones técnicas
@@ -100,10 +100,20 @@ El webhook fusiona el dato nuevo con los parámetros guardados en el contexto y 
 `#SOLICITAR_CITA.<parametro>`, así que la intención se rellena sola, el webhook revalida y se vuelve a pedir
 confirmación con el resumen actualizado.
 
-**Interrupciones.** Con *webhook for slot filling* el webhook ve cada frase de la recogida de datos. Si es una
-pregunta (regex de inicio interrogativo, porque el STT no siempre pone "¿"), responde con los documentos y
-repite la pregunta pendiente. En la fase de confirmación, `consulta_documental` responde y, si el contexto sigue
-vivo, retoma el flujo leyendo el resumen otra vez y renovando los contextos.
+**Interrupciones.** Comprobado en la consola de Dialogflow: si a mitad de la recogida de datos el usuario
+pregunta algo que encaja con otra intención ("¿tengo que pagar algo por el peritaje?"), Dialogflow ES **abandona el
+slot filling** y con él sus contextos internos. Por eso el webhook, en cada turno de *slot filling*, guarda lo recogido
+en `ctx_solicitud_en_curso`. `consulta_documental` responde y, al ver ese contexto, retoma: "Seguimos con tu cita. ¿Qué día
+te viene bien?". La respuesta ("el lunes por la mañana") entra por `corregir_dato`, que relanza el evento
+`SOLICITAR_CITA` con todo lo guardado; y si Dialogflow volviera a entrar en `solicitar_cita` desde cero, el webhook
+detecta los datos del contexto y relanza el mismo evento. En la fase de confirmación funciona igual: responde, vuelve a
+leer el resumen y renueva los contextos.
+
+**Copia de seguridad en el contexto.** Otro comportamiento real de Dialogflow: los contextos de salida de una intención
+reciben **todos** sus parámetros, también los vacíos, así que al activarse `corregir_dato` con solo la fecha, la
+matrícula del contexto pasa a `""`. El webhook guarda cada dato también como `guardado_<parametro>`, una clave que
+ninguna intención escribe, y la usa cuando el valor normal llega vacío. El emulador local reproduce este
+comportamiento para que los tests lo cubran.
 
 **Voz natural con SSML.** El cliente de voz manda `{"canal": "voz"}` en el payload. Para ese canal el
 `fulfillmentText` es SSML (`<speak>`): pausas entre ideas, matrículas y códigos de cita deletreados
@@ -144,7 +154,7 @@ protegido: ante cualquier error se responde algo útil ("he tenido un problema t
 extremo, `dialogflow_local/` carga el mismo export del agente y reproduce lo que usa este proyecto: coincidencia de
 frases de entrenamiento, entidades regex/propias/fecha/ciudad, contextos con vida, *slot filling* con webhook,
 follow-ups, eventos y `followupEventInput`, con la petición al webhook en el formato real de Dialogflow ES v2.
-Con `DIALOGFLOW_BACKEND=google` todo funciona igual contra el agente real.
+Con `DIALOGFLOW_BACKEND=google` todo funciona igual contra el agente real: el guion completo de la demo se ha probado en la consola de Dialogflow ES con el webhook expuesto por un túnel (todas las intenciones correctas, webhook en ≤ 0,6 s).
 
 ## Mejoras opcionales implementadas
 
@@ -209,7 +219,7 @@ ollama pull qwen2.5vl:7b
 .venv\Scripts\uvicorn webhook.main:app --port 8000
 ```
 
-Para Dialogflow real hay que exponerlo a internet (VS Code → PORTS → Public, o `devtunnel host -p 8000`) y
+Para Dialogflow real hay que exponerlo a internet (VS Code → PORTS → Public, `devtunnel host -p 8000` o, sin cuenta, `cloudflared tunnel --url http://127.0.0.1:8000`) y
 poner la URL terminada en `/webhook` en **Fulfillment**. Comprobación: abrir la URL raíz debe devolver
 `{"estado": "ok", ...}`.
 

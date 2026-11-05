@@ -87,8 +87,20 @@ class Peticion:
         return self.contextos.get(nombre)
 
     def params_contexto(self, nombre: str) -> dict:
+        """
+        Parámetros de un contexto, recuperando la copia de seguridad "guardado_<x>".
+
+        Dialogflow escribe en sus contextos de salida TODOS los parámetros de la intención
+        activa, también los vacíos: al activarse corregir_dato con solo la fecha, la matrícula
+        del contexto pasa a "". Por eso el webhook guarda además cada dato como guardado_<x>,
+        una clave que ninguna intención escribe, y aquí se usa cuando el valor normal está vacío.
+        """
         ctx = self.contextos.get(nombre) or {}
-        return ctx.get("parameters", {}) or {}
+        params = dict(ctx.get("parameters", {}) or {})
+        for clave in PARAMETROS_CITA:
+            if params.get(clave) in (None, "", []) and params.get(f"guardado_{clave}"):
+                params[clave] = params[f"guardado_{clave}"]
+        return params
 
 
 def leer_peticion(body: dict) -> Peticion:
@@ -169,32 +181,44 @@ def siguiente_pendiente(params: dict) -> str | None:
 def turno_slot_filling(p: Peticion) -> dict:
     """
     Dialogflow nos llama en cada turno de la recogida de datos ("webhook for slot filling").
-    - Si el usuario interrumpe con una pregunta, la respondemos con los documentos y
-      repetimos la pregunta pendiente (gestión de interrupciones).
+
+    - Guardamos SIEMPRE lo recogido hasta ahora en ctx_solicitud_en_curso. Dialogflow ES real
+      abandona el slot filling si la frase encaja mejor con otra intención (p. ej. una pregunta
+      que va a consulta_documental) y con él se pierden sus contextos internos. Nuestro contexto
+      sobrevive, así que tras la interrupción se puede retomar: consulta_documental pregunta el
+      dato pendiente y la respuesta entra por corregir_dato, que relanza SOLICITAR_CITA con todo.
+    - Si la pregunta sí llega aquí (emulador local, o Dialogflow no encontró otra intención),
+      la respondemos con los documentos y repetimos la pregunta pendiente.
     - Si ya sabemos de quién es la matrícula, personalizamos la siguiente pregunta.
-    - En otro caso devolvemos {} y Dialogflow usa su prompt estándar.
     """
+    # Reentrada tras una interrupción: si el contexto guarda datos que esta nueva ejecución de
+    # solicitar_cita no tiene, los recuperamos relanzando el evento con todo fusionado.
+    anteriores = solo_parametros_cita(p.params_contexto(CTX_SOLICITUD))
+    actuales = solo_parametros_cita(p.parametros)
+    if any(k not in actuales for k in anteriores):
+        return evento(EVENTO_SOLICITAR_CITA, {**anteriores, **actuales})
+
     pendiente = siguiente_pendiente(p.parametros)
     if pendiente is None:
         return {}
+    contextos = [contexto_solicitud(actuales)]
 
     if es_pregunta(p.texto) and not re.search(r"\d{4}\s?[A-Z]{3}", p.texto, re.I):
         f = respuesta_documental(p.texto)
         f.pausa(300).decir("Seguimos con tu cita.").decir(PREGUNTAS[pendiente])
-        return responder(p, f)
+        return responder(p, f, contextos=contextos)
 
     valida, matricula = negocio.validar_matricula(p.parametros.get("matricula"))
     poliza = negocio.POLIZAS.get(matricula) if valida else None
+    f = Frase()
     if poliza and pendiente != "matricula":
         nombre = poliza["titular"].split()[0]
-        f = Frase()
         if pendiente == "fecha":
             f.decir(f"Gracias, {nombre}. He encontrado tu {poliza['vehiculo']}.").pausa(200)
         else:
             f.decir("Perfecto.")
-        f.decir(PREGUNTAS[pendiente])
-        return responder(p, f)
-    return {}
+    f.decir(PREGUNTAS[pendiente])
+    return responder(p, f, contextos=contextos)
 
 
 def resumen_cita(ev: negocio.Evaluacion) -> Frase:
@@ -203,7 +227,7 @@ def resumen_cita(ev: negocio.Evaluacion) -> Frase:
     nombre = ev.poliza["titular"].split()[0]
     f.decir(f"{nombre}, te resumo la solicitud:").pausa(250)
     f.decir(f"cita de peritaje para tu {ev.poliza['vehiculo']}, matrícula ")
-    f.decir(negocio.matricula_legible(ev.matricula),
+    f.decir(negocio.matricula_legible(ev.matricula) + ",",
             f'<say-as interpret-as="characters">{ev.matricula[:4]}</say-as><break time="150ms"/>'
             f'<say-as interpret-as="characters">{ev.matricula[4:]}</say-as>,')
     f.decir(f"{negocio.fecha_en_texto(ev.fecha)} {negocio.FRANJAS[ev.franja]['nombre']}, "
@@ -215,7 +239,9 @@ def resumen_cita(ev: negocio.Evaluacion) -> Frase:
 
 
 def contexto_solicitud(params: dict, vida: int = 10) -> tuple[str, int, dict]:
-    return (CTX_SOLICITUD, vida, params)
+    """Contexto del flujo con los datos y su copia "guardado_<x>" (ver Peticion.params_contexto)."""
+    copia = {f"guardado_{k}": v for k, v in params.items() if k in PARAMETROS_CITA}
+    return (CTX_SOLICITUD, vida, {**params, **copia})
 
 
 def solicitar_cita(p: Peticion) -> dict:

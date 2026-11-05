@@ -42,10 +42,14 @@ def webhook_falso(peticion: dict) -> dict:
     if intent == "solicitar_cita - si":
         return {"fulfillmentText": "Cita confirmada: PER-12345."}
     if intent == "corregir_dato":
+        # Como en Dialogflow real, corregir_dato deja vacíos en ctx_solicitud_en_curso los
+        # parámetros que no trae; el follow-up conserva los datos completos del resumen.
         anteriores = {}
-        for c in qr["outputContexts"]:
-            if c["name"].endswith("/contexts/ctx_solicitud_en_curso"):
-                anteriores = {k: v for k, v in c["parameters"].items() if not k.endswith(".original")}
+        for sufijo in ("solicitar_cita-followup", "ctx_solicitud_en_curso"):
+            for c in qr["outputContexts"]:
+                if c["name"].endswith(f"/contexts/{sufijo}"):
+                    anteriores.update({k: v for k, v in c["parameters"].items()
+                                       if v and not k.endswith(".original")})
         fusion = {**anteriores, **{k: v for k, v in p.items() if v}}
         return {"followupEventInput": {"name": "SOLICITAR_CITA", "parameters": fusion, "languageCode": "es"}}
     if intent == "Default Fallback Intent":

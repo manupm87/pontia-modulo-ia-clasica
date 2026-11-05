@@ -158,3 +158,22 @@ def test_transferencia_agente(cliente):
     r = cliente.post("/webhook", json=peticion("transferir_agente", {}, "quiero hablar con una persona")).json()
     payload = r["fulfillmentMessages"][1]["payload"]
     assert payload["liveAgentHandoff"] is True and payload["ticket"].startswith("TCK-")
+
+
+def test_correccion_recupera_copia_guardada(cliente):
+    """Dialogflow real deja matricula="" en el contexto al activar corregir_dato: se usa la copia."""
+    nuevo = f"{proximo(3).isoformat()}T12:00:00+01:00"
+    ctx = [("ctx_solicitud_en_curso", 9, {"matricula": "", "fecha": nuevo, "franja": "",
+                                          "guardado_matricula": "1234 BCD", "guardado_franja": "tarde"})]
+    r = cliente.post("/webhook", json=peticion("corregir_dato", {"fecha": nuevo}, "mejor el jueves",
+                                               contextos=ctx)).json()
+    params = r["followupEventInput"]["parameters"]
+    assert params["matricula"] == "1234 BCD" and params["franja"] == "tarde" and params["fecha"] == nuevo
+
+
+def test_reentrada_tras_interrupcion_recupera_datos(cliente):
+    """Si Dialogflow vuelve a entrar en solicitar_cita de cero, el webhook relanza el evento con lo guardado."""
+    ctx = [("ctx_solicitud_en_curso", 9, {"guardado_matricula": "1234 BCD"})]
+    r = cliente.post("/webhook", json=peticion("solicitar_cita", {"franja": "manana"}, "por la mañana",
+                                               completos=False, contextos=ctx)).json()
+    assert r["followupEventInput"]["parameters"] == {"matricula": "1234 BCD", "franja": "manana"}

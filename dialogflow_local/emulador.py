@@ -483,15 +483,23 @@ class Sesion:
             if self.contextos[nombre]["lifespan"] <= 0:
                 del self.contextos[nombre]
 
-    def fijar(self, nombre: str, lifespan: int, parametros: dict | None = None) -> None:
-        """Crea/actualiza un contexto. Los parámetros vacíos no borran valores anteriores."""
+    def fijar(self, nombre: str, lifespan: int, parametros: dict | None = None,
+              pisar_vacios: bool = False) -> None:
+        """
+        Crea/actualiza un contexto.
+
+        pisar_vacios=True reproduce lo que hace Dialogflow ES real con los contextos de salida
+        de una intención: escribe TODOS sus parámetros, también los vacíos, y por tanto borra
+        valores anteriores con el mismo nombre (comprobado contra la consola de Dialogflow).
+        Los contextos que devuelve el webhook se fusionan sin borrar.
+        """
         if lifespan <= 0:
             self.contextos.pop(nombre, None)
             return
         ctx = self.contextos.setdefault(nombre, {"lifespan": lifespan, "parameters": {}})
         ctx["lifespan"] = lifespan
         for k, v in (parametros or {}).items():
-            if v not in ("", None, [], {}) or k not in ctx["parameters"]:
+            if pisar_vacios or v not in ("", None, [], {}) or k not in ctx["parameters"]:
                 ctx["parameters"][k] = v
 
 
@@ -712,7 +720,7 @@ class EmuladorDialogflow:
             if it.reset_contextos:
                 ses.contextos.clear()
             for nombre, vida in it.contextos_salida:
-                ses.fijar(nombre, vida, con_original)
+                ses.fijar(nombre, vida, con_original, pisar_vacios=True)
             texto_estatico = self._respuesta_estatica(ses, it, finales)
             llamar = it.webhook
         else:
