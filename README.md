@@ -288,7 +288,8 @@ poner la URL terminada en `/webhook` en **Fulfillment**. Comprobación: abrir la
 ```
 
 En la consola de Dialogflow ES: ⚙️ → *Export and Import* → **Restore from ZIP** con `dist/SegurosAlonso.zip`.
-Después: cambiar la URL de Fulfillment y pulsar **Train**.
+Después: cambiar la URL de Fulfillment y pulsar **Train**. El proceso completo, con credenciales y túnel, está en
+[Puesta en marcha con Dialogflow real](#puesta-en-marcha-con-dialogflow-real).
 
 ### 5. Hablar con Clara
 
@@ -327,3 +328,107 @@ Bot de Telegram (con `TELEGRAM_BOT_TOKEN` en `.env`):
 ```bash
 .venv\Scripts\python -m pytest -q
 ```
+
+En Linux o macOS los comandos son los mismos cambiando `.venv\Scripts\` por `.venv/bin/` (y `copy` por `cp`).
+
+## Puesta en marcha con Dialogflow real
+
+Estos son los pasos seguidos para probar el proyecto contra Dialogflow ES con su voz nativa. Todo lo anterior
+funciona sin cuenta de Google (emulador local); esto es lo que hace falta además para el agente real.
+
+### 1. Crear el agente e importar el export
+
+1. En https://dialogflow.cloud.google.com → **Create Agent**: nombre `SegurosAlonso`, idioma **Spanish — es**, zona
+   **Europe/Madrid** y **Create a new Google project** (o uno existente). Apunta el ID del proyecto (aquí
+   `segurosalonso-al9y`).
+2. ⚙️ → **Export and Import** → **Restore from ZIP** → `dist/SegurosAlonso.zip` → escribir `RESTORE`. *Restore* borra
+   todo lo que hubiera en el agente.
+3. Esperar a que termine el **entrenamiento** (un minuto, aproximadamente) antes de probar: si no, las frases caen en
+   intenciones equivocadas o en el fallback.
+
+### 2. Exponer el webhook
+
+Con el webhook arrancado en el puerto 8000, abrir un túnel (no necesita cuenta):
+
+```bash
+cloudflared tunnel --url http://127.0.0.1:8000
+```
+
+En **Fulfillment** → *Webhook* activado, URL = la que imprime `cloudflared` + `/webhook`, y **Save**. La cabecera
+`X-Tunnel-Skip-AntiPhishing-Page` ya viene en el export (la necesitan los devtunnels de VS Code; a cloudflared no le
+afecta). Comprobación: la URL del túnel sin `/webhook` debe devolver `{"estado": "ok", ...}`.
+
+Hay que volver a poner la URL en Fulfillment cada vez que:
+- se reinicia `cloudflared`, porque cada ejecución da una URL nueva;
+- se hace **Restore from ZIP**, porque el export lleva un marcador (`https://TU-TUNEL.devtunnels.ms/webhook`) para no
+  publicar URLs reales, y la restauración lo vuelve a poner.
+
+### 3. Credenciales para la voz nativa (cuenta de servicio)
+
+Con el [SDK de Google Cloud](https://cloud.google.com/sdk/docs/install) instalado (en Windows,
+`winget install Google.CloudSDK`) y sustituyendo `segurosalonso-al9y` por tu proyecto:
+
+```bash
+gcloud auth login
+```
+
+```bash
+gcloud services enable dialogflow.googleapis.com iam.googleapis.com --project segurosalonso-al9y
+```
+
+```bash
+gcloud iam service-accounts create clara-dialogflow --project segurosalonso-al9y --display-name=Clara-Dialogflow
+```
+
+```bash
+gcloud projects add-iam-policy-binding segurosalonso-al9y --member serviceAccount:clara-dialogflow@segurosalonso-al9y.iam.gserviceaccount.com --role roles/dialogflow.client --condition=None
+```
+
+```bash
+gcloud iam service-accounts keys create %USERPROFILE%\.secrets\segurosalonso-dialogflow.json --iam-account clara-dialogflow@segurosalonso-al9y.iam.gserviceaccount.com
+```
+
+La clave se guarda **fuera del repositorio**; aun así, el `.gitignore` ignora `*clave*.json` y `credenciales*.json`.
+En Windows, `--display-name` no debe llevar espacios, porque `gcloud.cmd` parte mal el argumento. Después, en `.env`:
+
+```
+DIALOGFLOW_BACKEND=google
+DIALOGFLOW_PROJECT_ID=segurosalonso-al9y
+GOOGLE_APPLICATION_CREDENTIALS=C:\Users\<usuario>\.secrets\segurosalonso-dialogflow.json
+```
+
+Con `DIALOGFLOW_BACKEND=local` todo vuelve al emulador sin tocar nada más.
+
+### 4. Probar
+
+Por texto, en el simulador de la consola (panel derecho, *Try it now*), con el guion de `demo/guion.py`. Si algo
+falla, **Diagnostic info** muestra la intención, los parámetros y la respuesta del webhook.
+
+Por voz, con el STT y el TTS nativos de Dialogflow:
+
+```bash
+.venv\Scripts\python cliente_voz.py --backend google --stt dialogflow --tts dialogflow
+```
+
+Las matrículas se dictan cifra a cifra y letra a letra ("uno dos tres cuatro, be ce de"); el webhook las reconstruye
+aunque el STT las transcriba de otra forma.
+
+Vídeo de la demo con el agente real (el cliente habla con voz sintética; la salida va a `demo/salida_google/`).
+Con `DIALOGFLOW_BACKEND=google` en `.env`, la demo usa el modo audio nativo de Dialogflow:
+
+```bash
+.venv\Scripts\python -m demo.demo_guiada --salida demo/salida_google
+```
+
+### 5. Cuando cambias algo
+
+| Cambias… | Qué hacer después |
+| --- | --- |
+| El código del webhook (`webhook/`) | Reiniciar uvicorn, que se arranca sin `--reload`. Con `cloudflared` corriendo aparte, la URL del túnel no cambia |
+| El agente (`agente_dialogflow/`) | `python scripts\empaquetar_agente.py` → **Restore from ZIP** → volver a poner la URL en Fulfillment → esperar al entrenamiento |
+| Los documentos | `python -m ocr.ocr`, después borrar `data/chroma/` (o ejecutar `python -m ocr.indexar`) y reiniciar el webhook |
+| La URL del túnel | Solo Fulfillment → URL → **Save** |
+
+Para que el emulador local y el agente real no se separen, los cambios del agente se hacen siempre en
+`agente_dialogflow/` y se importan, no editando en la consola. Si se edita en la consola, hay que exportar el ZIP y
+copiar su contenido a `agente_dialogflow/`.
