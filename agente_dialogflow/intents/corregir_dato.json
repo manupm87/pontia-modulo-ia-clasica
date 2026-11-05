@@ -1,0 +1,113 @@
+{
+  "id": "e8fd63d6-304f-413a-b6ce-c21f9609758f",
+  "name": "corregir_dato",
+  "auto": true,
+  "contexts": [
+    "ctx_solicitud_en_curso"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "corregir_dato",
+      "affectedContexts": [
+        {
+          "name": "ctx_solicitud_en_curso",
+          "lifespan": 10
+        }
+      ],
+      "parameters": [
+        {
+          "id": "bf578427-1583-423d-b354-85a3cf897904",
+          "name": "matricula",
+          "required": false,
+          "dataType": "@matricula",
+          "value": "$matricula",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "ef68f1aa-3a6c-4988-96d4-cf67547a9d45",
+          "name": "fecha",
+          "required": false,
+          "dataType": "@sys.date",
+          "value": "$fecha",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "05b6805b-5054-462a-86a0-b3f2ef9b32fe",
+          "name": "franja",
+          "required": false,
+          "dataType": "@franja",
+          "value": "$franja",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "bdfcdd6a-2dfd-4e90-a6a0-a39c919a7375",
+          "name": "ciudad",
+          "required": false,
+          "dataType": "@sys.geo-city",
+          "value": "$ciudad",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        },
+        {
+          "id": "321346fa-d90c-4ec4-a948-d5a8880aac9f",
+          "name": "tipo_dano",
+          "required": false,
+          "dataType": "@tipo_dano",
+          "value": "$tipo_dano",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        }
+      ],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "es",
+          "speech": [
+            "Entendido, actualizo ese dato."
+          ],
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

@@ -1,0 +1,275 @@
+[
+  {
+    "id": "8dd20395-095f-4e5b-a371-f2d3e64280f3",
+    "data": [
+      {
+        "text": "quiero hablar con una persona",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "5c577e00-92cb-4117-84ad-66cdbab9b2d0",
+    "data": [
+      {
+        "text": "pásame con un agente",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "a1f23986-4e68-4c84-9930-4cd5f147ceb2",
+    "data": [
+      {
+        "text": "operador",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "cc34d303-e500-4933-8ae9-4c1e8b6028f4",
+    "data": [
+      {
+        "text": "quiero hablar con un humano",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "2ec5e408-c5c4-468f-87ad-0e74322cb51e",
+    "data": [
+      {
+        "text": "ponme con un agente",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "940b76a2-ea64-4bf9-9dc8-466f83b9e27b",
+    "data": [
+      {
+        "text": "pásame con alguien de atención al cliente",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "f7c90185-8b9c-43f2-9dee-35e0525d911f",
+    "data": [
+      {
+        "text": "necesito hablar con una persona real",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "5dabb4f3-5f01-4db6-9049-7187a598d94a",
+    "data": [
+      {
+        "text": "agente",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "89aef2df-39a9-4ec4-8512-ce720b66e41b",
+    "data": [
+      {
+        "text": "con un operador, por favor",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "8b28f665-334c-47a9-bcfd-056d7108051e",
+    "data": [
+      {
+        "text": "no quiero hablar con una máquina",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "10fcd34f-fe5b-4303-8632-858680e2d002",
+    "data": [
+      {
+        "text": "quiero hablar con un gestor",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "0963f309-7775-4a69-93b0-dbac519a3442",
+    "data": [
+      {
+        "text": "llamadme, por favor",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "4476e82c-c943-4497-b910-32ec26953c1e",
+    "data": [
+      {
+        "text": "quiero que me atienda una persona",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "b35734a6-ee13-4a8a-9561-a5e4140309ea",
+    "data": [
+      {
+        "text": "comunícame con un asesor",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "fb7620ec-8fa9-4ef1-8dcc-4d1bedf0e131",
+    "data": [
+      {
+        "text": "hablar con un agente",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "8cf2fbdb-1142-4998-8bfe-95ae10b201ef",
+    "data": [
+      {
+        "text": "esto no funciona, quiero una persona",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "4ffec431-0348-4d3d-8b67-6a4a4e274646",
+    "data": [
+      {
+        "text": "me puedes pasar con alguien",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "41929944-2e07-4bdc-b8fe-c6d4fae2808d",
+    "data": [
+      {
+        "text": "quiero poner una reclamación con un agente",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "27f12083-dbb0-4ddf-afe1-6f0578e28d75",
+    "data": [
+      {
+        "text": "quiero hablar con alguien",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "b552d005-086d-4bb2-b793-c33e72c6c3f1",
+    "data": [
+      {
+        "text": "puedo hablar con alguien de la compañía",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "20e33855-6b6d-40e6-8035-fd13ead82a64",
+    "data": [
+      {
+        "text": "que me llame un agente",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  }
+]

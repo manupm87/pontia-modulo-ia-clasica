@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 640" font-family="Segoe UI, system-ui, sans-serif" font-size="13">
+  <defs>
+    <marker id="f" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#3d4654"/>
+    </marker>
+    <style>
+      .caja { stroke-width: 1.6; rx: 10; }
+      .t { font-weight: 650; font-size: 14px; fill: #1d2430; }
+      .s { fill: #4a5361; font-size: 12px; }
+      .l { stroke: #3d4654; stroke-width: 1.5; fill: none; marker-end: url(#f); }
+      .ld { stroke: #3d4654; stroke-width: 1.5; fill: none; marker-end: url(#f); stroke-dasharray: 5 4; }
+      .opt { stroke-dasharray: 6 4; }
+      .et { fill: #4a5361; font-size: 11px; font-style: italic; }
+    </style>
+  </defs>
+  <rect width="1100" height="640" fill="#fbfaf7"/>
+  <text x="550" y="32" text-anchor="middle" font-size="19" font-weight="700" fill="#0f5c63">Seguros Alonso · arquitectura del asistente de voz</text>
+
+  <!-- Usuario y canales -->
+  <rect class="caja" x="40" y="70" width="190" height="60" fill="#ffffff" stroke="#3d4654"/>
+  <text class="t" x="135" y="96" text-anchor="middle">Usuario (voz)</text>
+  <text class="s" x="135" y="115" text-anchor="middle">habla y escucha</text>
+
+  <rect class="caja" x="40" y="170" width="190" height="130" fill="#fdf1ec" stroke="#c8553d"/>
+  <text class="t" x="135" y="194" text-anchor="middle">Canales</text>
+  <text class="s" x="56" y="218">• cliente_voz.py (micrófono)</text>
+  <text class="s" x="56" y="238">• Demo web (navegador)</text>
+  <text class="s" x="56" y="258">• Bot de Telegram</text>
+  <text class="s" x="66" y="276">  notas de voz + botones</text>
+  <line class="l" x1="135" y1="130" x2="135" y2="168"/>
+
+  <!-- Voz -->
+  <rect class="caja" x="290" y="70" width="230" height="95" fill="#eef3fb" stroke="#4a6fa5"/>
+  <text class="t" x="405" y="95" text-anchor="middle">STT</text>
+  <text class="s" x="405" y="116" text-anchor="middle">Dialogflow nativo (modo audio)</text>
+  <text class="s" x="405" y="134" text-anchor="middle">o Whisper (faster-whisper, GPU)</text>
+  <text class="s" x="405" y="152" text-anchor="middle">+ normalización de matrículas</text>
+
+  <rect class="caja" x="290" y="205" width="230" height="95" fill="#eef3fb" stroke="#4a6fa5"/>
+  <text class="t" x="405" y="230" text-anchor="middle">TTS con SSML</text>
+  <text class="s" x="405" y="251" text-anchor="middle">Dialogflow nativo · edge neural</text>
+  <text class="s" x="405" y="269" text-anchor="middle">ElevenLabs · XTTS-v2 (voz clonada)</text>
+  <text class="s" x="405" y="287" text-anchor="middle">pausas, énfasis, deletreo</text>
+
+  <path class="l" d="M230,200 C260,200 260,118 288,118"/>
+  <path class="l" d="M290,252 C260,252 260,270 232,270"/>
+
+  <!-- Dialogflow -->
+  <rect class="caja" x="580" y="70" width="230" height="230" fill="#efeafb" stroke="#6b4fbb"/>
+  <text class="t" x="695" y="95" text-anchor="middle">Dialogflow ES</text>
+  <text class="s" x="695" y="114" text-anchor="middle">(o emulador local del agente)</text>
+  <text class="s" x="596" y="142">• bienvenida · fallback</text>
+  <text class="s" x="596" y="161">• solicitar_cita (slot filling)</text>
+  <text class="s" x="596" y="180">   └ sí / no (follow-up)</text>
+  <text class="s" x="596" y="199">• corregir_dato (evento)</text>
+  <text class="s" x="596" y="218">• consulta_documental</text>
+  <text class="s" x="596" y="237">• transferir_agente</text>
+  <text class="s" x="596" y="262">@matricula (regex) · @franja</text>
+  <text class="s" x="596" y="280">@sys.date · @sys.geo-city</text>
+  <line class="l" x1="520" y1="118" x2="578" y2="118"/>
+  <line class="l" x1="580" y1="252" x2="522" y2="252"/>
+  <text class="et" x="549" y="110" text-anchor="middle">texto</text>
+  <text class="et" x="549" y="244" text-anchor="middle">SSML</text>
+
+  <!-- Webhook -->
+  <rect class="caja" x="860" y="70" width="210" height="230" fill="#e5f4f4" stroke="#0f5c63"/>
+  <text class="t" x="965" y="95" text-anchor="middle">Webhook FastAPI</text>
+  <text class="s" x="876" y="122">• regex de matrícula</text>
+  <text class="s" x="876" y="141">• póliza, cobertura, agenda</text>
+  <text class="s" x="876" y="160">• confirmación y cita</text>
+  <text class="s" x="876" y="179">• corrección por eventos</text>
+  <text class="s" x="876" y="198">• interrupciones: responde</text>
+  <text class="s" x="876" y="216">   y retoma el flujo</text>
+  <text class="s" x="876" y="235">• ticket a agente humano</text>
+  <text class="s" x="876" y="254">• texto + SSML + Telegram</text>
+  <path class="l" d="M810,150 L858,150"/>
+  <path class="l" d="M860,200 L812,200"/>
+  <text class="et" x="835" y="142" text-anchor="middle">req</text>
+  <text class="et" x="835" y="215" text-anchor="middle">resp</text>
+
+  <!-- RAG -->
+  <rect class="caja" x="580" y="370" width="230" height="120" fill="#e5f4f4" stroke="#0f5c63"/>
+  <text class="t" x="695" y="395" text-anchor="middle">Motor documental (RAG)</text>
+  <text class="s" x="596" y="420">• ChromaDB + embeddings bge-m3</text>
+  <text class="s" x="596" y="439">• umbral de similitud</text>
+  <text class="s" x="596" y="458">• prompt "solo el CONTEXTO" + NO_CONSTA</text>
+  <text class="s" x="596" y="477">• control de cifras (anti-alucinación)</text>
+
+  <rect class="caja" x="860" y="370" width="210" height="120" fill="#e5f4f4" stroke="#0f5c63"/>
+  <text class="t" x="965" y="395" text-anchor="middle">LLM</text>
+  <text class="s" x="965" y="420" text-anchor="middle">Ollama qwen2.5:7b (local, GPU)</text>
+  <text class="s" x="965" y="439" text-anchor="middle">o Gemini 2.5 Flash</text>
+  <text class="s" x="965" y="458" text-anchor="middle">timeout &lt; 5 s · try/except</text>
+  <path class="l" d="M965,300 C965,330 760,330 740,368"/>
+  <line class="l" x1="810" y1="430" x2="858" y2="430"/>
+
+  <!-- Offline -->
+  <rect x="40" y="350" width="500" height="260" rx="14" fill="none" stroke="#b7791f" stroke-dasharray="7 5"/>
+  <text x="56" y="374" font-weight="700" fill="#b7791f">Proceso offline (una sola vez)</text>
+  <rect class="caja" x="60" y="390" width="200" height="90" fill="#fff6e5" stroke="#b7791f"/>
+  <text class="t" x="160" y="414" text-anchor="middle">5 documentos escaneados</text>
+  <text class="s" x="160" y="434" text-anchor="middle">condiciones · tabla · guía</text>
+  <text class="s" x="160" y="452" text-anchor="middle">formulario · parte manuscrito</text>
+  <rect class="caja" x="320" y="390" width="200" height="90" fill="#fff6e5" stroke="#b7791f"/>
+  <text class="t" x="420" y="414" text-anchor="middle">OCR</text>
+  <text class="s" x="420" y="434" text-anchor="middle">OpenCV: enderezar, limpiar</text>
+  <text class="s" x="420" y="452" text-anchor="middle">VLM qwen2.5vl (Ollama)</text>
+  <text class="s" x="420" y="470" text-anchor="middle">o Tesseract (spa)</text>
+  <line class="l" x1="260" y1="435" x2="318" y2="435"/>
+  <rect class="caja" x="60" y="510" width="200" height="80" fill="#fff6e5" stroke="#b7791f"/>
+  <text class="t" x="160" y="534" text-anchor="middle">Regex y validación</text>
+  <text class="s" x="160" y="554" text-anchor="middle">fechas, importes, pólizas,</text>
+  <text class="s" x="160" y="572" text-anchor="middle">DNI (letra), siniestros</text>
+  <rect class="caja" x="320" y="510" width="200" height="80" fill="#fff6e5" stroke="#b7791f"/>
+  <text class="t" x="420" y="534" text-anchor="middle">documentos.json</text>
+  <text class="s" x="420" y="554" text-anchor="middle">→ trocear + embeddings</text>
+  <text class="s" x="420" y="572" text-anchor="middle">→ ChromaDB (data/chroma)</text>
+  <path class="l" d="M420,480 C420,495 160,490 160,508"/>
+  <line class="l" x1="260" y1="550" x2="318" y2="550"/>
+  <path class="l" d="M520,550 C560,550 560,450 578,450"/>
+</svg>

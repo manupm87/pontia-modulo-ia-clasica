@@ -1,0 +1,180 @@
+[
+  {
+    "documento": "01_condiciones_generales_auto.png",
+    "motor": "vlm",
+    "texto": "# CONDICIONES GENERALES DEL SEGURO DE AUTOMÓVIL\nEdición 01/2026 Referencia CG-AUTO-2026\n\n**Artículo 1. Objeto del seguro.**\nSeguros Alonso, S.A. (en adelante, el Asegurador) garantiza al Tomador y al Asegurado la cobertura de los riesgos derivados de la propiedad y circulación del vehículo descrito en las Condiciones Particulares, dentro de los límites y con las modalidades contratadas. Estas Condiciones Generales se aplican a todas las pólizas de automóvil (turismos de uso particular) emitidas a partir del 1 de enero de 2026.\n\n**Artículo 2. Modalidades.**\nEl Tomador puede elegir entre cuatro modalidades: Terceros básico, Terceros ampliado, Todo riesgo con franquicia y Todo riesgo sin franquicia. Las garantías incluidas en cada una y sus precios orientativos figuran en la Tabla de coberturas, que forma parte inseparable de este contrato.\n\n**Artículo 3: Exclusiones.**\nNo quedan cubiertos los siniestros: a) ocurridos cuando el conductor circule bajo la influencia de bebidas alcohólicas por encima de la tasa legal, o de drogas o estupefacientes; b) producidos durante la participación en carreras, apuestas, competiciones o pruebas de velocidad; c) causados por un conductor sin permiso de conducir válido; d) causados intencionadamente por el Asegurado; e) derivados de guerra, terrorismo o fenómenos de la naturaleza extraordinarios, que cubre el Consorcio de Compensación de Seguros; f) ocurridos durante el transporte de mercancías peligrosas o el uso del vehículo para alquiler o VTC no declarado en la póliza.\n\n**Artículo 4. Franquicias.**\nEn la modalidad Todo riesgo con franquicia, el Asegurado asume los primeros 300 € de cada siniestro de daños propios. La franquicia no se aplica a las garantías de lunas, robo, incendio ni responsabilidad civil. En la modalidad Todo riesgo sin franquicia el Asegurador paga el importe íntegro de la reparación.\n\n**Artículo 5. Comunicación del siniestro.**\nEl Tomador o el Asegurado deben comunicar el siniestro en un plazo máximo de 7 días desde que lo conocieron, llamando a Atención al Cliente (910 555 222), a través del asistente de voz o en la web. Deberán aportar el parte amistoso de accidente si lo hubiera y toda la información sobre las circunstancias y consecuencias del siniestro.\n\n**Artículo 6. Peritaje.**\nPara valorar los daños propios, un perito designado por el Asegurador revisará el vehículo en un taller concertado. El perito acude en un plazo máximo de 72 horas hábiles desde la solicitud de la cita y el peritaje no tiene ningún coste para el Asegurado. Si el Asegurado no está conforme con la valoración, puede solicitar un peritaje contradictorio, cuyos honorarios correrán de su cuenta.\n\n**Artículo 7. Vehículo de sustitución.**\nEn las modalidades de Todo riesgo, mientras el vehículo asegurado permanezca en el taller por un siniestro cubierto, el Asegurado tendrá derecho a un vehículo de sustitución de categoría similar durante un máximo de 15 días. En Terceros ampliado, solo en caso de robo y durante un máximo de 5 días.\n\n**Artículo 8. Asistencia en carretera.**\nEl servicio de asistencia funciona 24 horas los 365 días del año en el teléfono 900 123 456. Se presta desde el kilómetro 0 en Terceros ampliado y en Todo riesgo, y a partir de 25 km del domicilio habitual en Terceros básico. Los límites de remolque de la grúa se indican en la Guía de peritaje y asistencia.\n\n**Artículo 9. Pago de la prima.**\nLa prima puede pagarse de forma anual, semestral (recargo del 2 %) o trimestral (recargo del 3 %), mediante domiciliación bancaria. El impago de la primera prima permite al Asegurador resolver el contrato.\n\n**Artículo 10. Duración e indemnización.**\nEl contrato dura un año y se prorroga tácitamente por periodos anuales, salvo oposición del Tomador con un mes de antelación al vencimiento. El Asegurador abonará la indemnización en un plazo máximo de 40 días desde la recepción del informe pericial.\n\nSeguros Alonso, S.A. Inscrita en el Registro Mercantil de Madrid CG-AUTO-2026 Página 1 de 1",
+    "caracteres": 3991,
+    "segundos": 9.0,
+    "campos": {
+      "fechas": [],
+      "importes": [
+        300.0
+      ],
+      "polizas": [],
+      "matriculas": [],
+      "dnis": [],
+      "telefonos": [
+        "910 555 222",
+        "900 123 456"
+      ],
+      "siniestros": [],
+      "citas": []
+    },
+    "avisos": [],
+    "preprocesado": {
+      "inclinacion_corregida": 1.08
+    },
+    "metricas": {
+      "cer": 0.0245,
+      "wer": 0.0322,
+      "palabras_encontradas": 0.9785
+    }
+  },
+  {
+    "documento": "02_tabla_coberturas.png",
+    "motor": "vlm",
+    "texto": "# SEGUROS ALONSO, S.A.\nSeguros de automóvil C/ Gran Vía 41, 28013 Madrid CIF A-28999999\n\n## TABLA DE COBERTURAS Y PRECIOS · SEGURO DE AUTOMÓVIL\nAnexo a las Condiciones Generales CG-AUTO-2026 · Vigente desde el 1 de enero de 2026\n\n| Cobertura | Terceros básico | Terceros ampliado | Todo riesgo con franquicia | Todo riesgo sin franquicia |\n| --- | --- | --- | --- | --- |\n| Responsabilidad civil obligatoria | ✓ | ✓ | ✓ | ✓ |\n| Responsabilidad civil voluntaria (hasta 50.000.000 €) | ✓ | ✓ | ✓ | ✓ |\n| Defensa jurídica | ✓ | ✓ | ✓ | ✓ |\n| Asistencia en carretera | Desde km 25 | Desde km 0 | Desde km 0 | Desde km 0 |\n| Lunas | ✗ | ✓ | ✓ | ✓ |\n| Robo | ✗ | ✓ | ✓ | ✓ |\n| Incendio | ✗ | ✓ | ✓ | ✓ |\n| Daños propios | ✗ | ✗ | ✓ (franquicia 300 €) | ✓ |\n| Granizo | ✗ | ✗ | ✓ | ✓ |\n| Vehículo de sustitución | ✗ | 5 días (solo robo) | Hasta 15 días | Hasta 15 días |\n| Precio anual orientativo | 285,00 € | 398,50 € | 589,00 € | 845,90 € |\n\n✓ = incluida ✗ = no incluida.\n\n(1) Franquicia de 300 € por siniestro, aplicable solo a daños propios.\n(2) Asistencia en carretera en Terceros básico: solo a partir de 25 km del domicilio habitual.\n(3) Precios orientativos para un turismo de hasta 1.600 cc y conductor mayor de 25 años con más de 2 años de carné. Impuestos y recargo del Consorcio incluidos. La prima definitiva figura en las Condiciones Particulares.\n\n## Recargos según la forma de pago\n| Forma de pago | Recargo sobre la prima |\n| --- | --- |\n| Anual | Sin recargo |\n| Semestral | Recargo del 2 % |\n| Trimestral | Recargo del 3 % |\n\nSeguros Alonso, S.A. Tabla de coberturas TC-AUTO-2026 Consulte las exclusiones en el artículo 3 de las Condiciones Generales",
+    "caracteres": 1663,
+    "segundos": 4.39,
+    "campos": {
+      "fechas": [],
+      "importes": [
+        50000000.0,
+        300.0,
+        285.0,
+        398.5,
+        589.0,
+        845.9
+      ],
+      "polizas": [],
+      "matriculas": [],
+      "dnis": [],
+      "telefonos": [],
+      "siniestros": [],
+      "citas": []
+    },
+    "avisos": [],
+    "preprocesado": {
+      "inclinacion_corregida": 1.37
+    },
+    "metricas": {
+      "cer": 0.0055,
+      "wer": 0.0152,
+      "palabras_encontradas": 1.0
+    }
+  },
+  {
+    "documento": "03_guia_peritaje_y_asistencia.png",
+    "motor": "vlm",
+    "texto": "# SEGUROS ALONSO, S.A.\nSeguros de automóvil C/ Gran Vía 41, 28013 Madrid CIF A-28999999\n\n## GUÍA RÁPIDA DE PERITAJE Y ASISTENCIA\nGuárdala en la guantera de tu vehículo\n\n### ¿Cómo pido una cita de peritaje?\n1. Llama a Atención al Cliente (910 555 222) o usa el asistente de voz de Seguros Alonso.\n2. Indica la matrícula, la ciudad, el día y la franja (mañana o tarde) que prefieres.\n3. Recibirás un código de cita con el formato PER-12345. Guárdalo.\n4. Acude al taller concertado a la hora acordada. El perito tarda unos 30 minutos.\n\n### ¿Qué tengo que llevar?\n- Permiso de circulación del vehículo.\n- DNI del conductor.\n- Parte amistoso de accidente, si se rellenó.\n- Fotos de los daños (si las tienes).\n- Número de póliza (por ejemplo, SA-104233).\n\n### Horario de peritaje\nLunes a viernes (no festivos).\nMañana: de 9:00 a 14:00.\nTarde: de 16:00 a 19:00.\nLas citas se conceden desde el día siguiente a la solicitud y como máximo con 30 días de antelación. El peritaje es gratuito.\n\n### Teléfonos útiles\nAsistencia en carretera 24 h:\n900 123 456\nAtención al cliente:\n910 555 222 (L-V de 9:00 a 19:00)\n\n### Límites de la grúa\n- Terceros básico: desde 25 km del domicilio; remolque hasta 50 km.\n- Terceros ampliado: desde el km 0; remolque hasta 100 km.\n- Todo riesgo: desde el km 0; remolque hasta 150 km o hasta el taller concertado más cercano.\n\n### Talleres concertados\nMadrid, Barcelona, Valencia, Sevilla, Bilbao, Zaragoza, Málaga, Gijón, Oviedo y A Coruña.\n\n### Si tienes un accidente\n- Señaliza el vehículo y ponte el chaleco reflectante.\n- Si hay heridos, llama al 112.\n- Rellena el parte amistoso con el otro conductor.\n- Comunica el siniestro en un plazo máximo de 7 días.\n\nSeguros Alonso, S.A. Guía GPA-2026 Información resumida: prevalecen las Condiciones Generales",
+    "caracteres": 1775,
+    "segundos": 4.4,
+    "campos": {
+      "fechas": [],
+      "importes": [],
+      "polizas": [
+        "SA-104233"
+      ],
+      "matriculas": [],
+      "dnis": [],
+      "telefonos": [
+        "910 555 222",
+        "900 123 456"
+      ],
+      "siniestros": [],
+      "citas": [
+        "PER-12345"
+      ]
+    },
+    "avisos": [],
+    "preprocesado": {
+      "inclinacion_corregida": 1.55
+    },
+    "metricas": {
+      "cer": 0.0047,
+      "wer": 0.0136,
+      "palabras_encontradas": 0.9864
+    }
+  },
+  {
+    "documento": "04_condiciones_particulares_SA-104233.png",
+    "motor": "vlm",
+    "texto": "# SEGUROS ALONSO, S.A.\nSeguros de automóvil C/ Gran Vía 41, 28013 Madrid CIF A-28999999\n\n## CONDICIONES PARTICULARES · SEGURO DE AUTOMÓVIL\nNº de póliza: SA-104233\nOficina: 0412 Gijón\n\n### 1. TOMADOR Y ASEGURADO\n- Nombre y apellidos: Ana Ruiz Martín\n- DNI/NIF: 12345678Z\n- Fecha de nacimiento: 22/07/1988\n- Teléfono: 612 345 678\n- Domicilio: C/ Corrida 21, 2º A, 33206 Gijón (Asturias)\n\n### 2. VEHÍCULO ASEGURADO\n- Marca y modelo: Seat León 1.5 TSI\n- Matrícula: 1234 BCD\n- Fecha de 1ª matriculación: 10/05/2021\n- Uso: Particular\n\n### 3. CONDUCTORES\n- Conductor habitual: Ana Ruiz Martín\n- Permiso expedido el: 05/09/2007\n- Conductores ocasionales: Ninguno declarado\n\n### 4. MODALIDAD Y GARANTÍAS\n- Terceros básico: [ ]\n- Terceros ampliado: [ ]\n- Todo riesgo con franquicia: [X]\n- Todo riesgo sin franquicia: [ ]\n- Franquicia de daños propios: 300 €\n- Garantías incluidas: responsabilidad civil obligatoria y voluntaria (hasta 50.000.000 €), defensa jurídica, asistencia en carretera desde km 0, lunas, robo, incendio, daños propios, granizo y vehículo de sustitución hasta 15 días.\n\n### 5. DURACIÓN Y PRIMA\n- Fecha de efecto: 14/03/2026\n- Vencimiento: 14/03/2027\n- Prima anual total: 612,40 €\n- Anual: [X]\n- Semestral: [ ]\n- Trimestral: [ ]\n- Domiciliación bancaria (IBAN): ES76 ******\n\nEl Tomador declara haber recibido las Condiciones Generales (CG-AUTO-2026) y la Tabla de coberturas, y acepta expresamente las cláusulas limitativas de los artículos 3 y 4.\nEn Gijón, a 10 de marzo de 2026\n\nFirma del Tomador: [Firma]\nPor Seguros Alonso, S.A.\nDepartamento de Emisión: [Firma]",
+    "caracteres": 1576,
+    "segundos": 4.47,
+    "campos": {
+      "fechas": [
+        "1988-07-22",
+        "2021-05-10",
+        "2007-09-05",
+        "2026-03-14",
+        "2027-03-14"
+      ],
+      "importes": [
+        300.0,
+        50000000.0,
+        612.4
+      ],
+      "polizas": [
+        "SA-104233"
+      ],
+      "matriculas": [
+        "1234BCD"
+      ],
+      "dnis": [
+        "12345678Z"
+      ],
+      "telefonos": [
+        "612 345 678"
+      ],
+      "siniestros": [],
+      "citas": []
+    },
+    "avisos": [],
+    "preprocesado": {
+      "inclinacion_corregida": -1.49
+    },
+    "metricas": {
+      "cer": 0.1023,
+      "wer": 0.1598,
+      "palabras_encontradas": 0.9508
+    }
+  },
+  {
+    "documento": "05_parte_siniestro_manuscrito.png",
+    "motor": "vlm",
+    "texto": "# DECLARACIÓN DE SINIESTRO · AUTOMÓVIL\nRellene con letra clara y envíelo en un plazo máximo de 7 días\n\n| A. DATOS DEL ASEGURADO Y DEL VEHÍCULO | A rellenar por Seguros Alonso |\n| --- | --- |\n| N° de póliza: SA-104233 | N° de siniestro: SIN-2026-004512 |\n| Tomador: Ana Ruiz Martín | Fecha de recepción: 03/11/2026 |\n| Matrícula: 1234 BCD | Teléfono: 612 345 678 |\n| Marca y modelo: Seat León |  |\n\nB. DATOS DEL SINIESTRO\n| Fecha del siniestro: 02/11/2026 | Hora: 18:40 |\n| Lugar: Gijón, parking público de la C/ Marqués de San Esteban |  |\n| ¿Hubo heridos? | No |\n| ¿Intervino otro vehículo? | No |\n| ¿Intervino la policía? | No |\n\nC. DESCRIPCIÓN DE LO OCURRIDO\nGolpe en la puerta trasera derecha al aparcar en el parking. Al maniobrar marcha atrás rocé una columna. La puerta queda abollada y con un rayón largo. No hay otros vehículos implicados ni heridos.\n\nD. DAÑOS APRECIADOS\nPuerta trasera derecha abollada y rayón en la aleta trasera derecha.\n\nE. CITA DE PERITAJE\n| ¿Solicita cita de peritaje? | Sí |\n| Ciudad preferida: Gijón | Franja: Tarde |\n| Declaro que los datos anteriores son ciertos. | Firma del asegurado |\n| En Gijón, a 3 de noviembre de 2026 | SEGUROS ALONSO |\n|  | RECIBIDO 03/11/2026 |",
+    "caracteres": 1206,
+    "segundos": 3.74,
+    "campos": {
+      "fechas": [
+        "2026-11-03",
+        "2026-11-02"
+      ],
+      "importes": [],
+      "polizas": [
+        "SA-104233"
+      ],
+      "matriculas": [
+        "1234BCD"
+      ],
+      "dnis": [],
+      "telefonos": [
+        "612 345 678"
+      ],
+      "siniestros": [
+        "SIN-2026-004512"
+      ],
+      "citas": []
+    },
+    "avisos": [],
+    "preprocesado": {
+      "inclinacion_corregida": -1.8
+    },
+    "metricas": {
+      "cer": 0.3276,
+      "wer": 0.368,
+      "palabras_encontradas": 0.8485
+    }
+  }
+]

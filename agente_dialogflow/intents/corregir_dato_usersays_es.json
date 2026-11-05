@@ -1,0 +1,506 @@
+[
+  {
+    "id": "41fdf885-e365-4dc9-a7f6-44fdd27b7f98",
+    "data": [
+      {
+        "text": "mejor ",
+        "userDefined": false
+      },
+      {
+        "text": "el jueves",
+        "meta": "@sys.date",
+        "alias": "fecha",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "2470a3cc-7cfb-4ae0-8fe1-8de3d0f3dfa7",
+    "data": [
+      {
+        "text": "no, la matrícula es ",
+        "userDefined": false
+      },
+      {
+        "text": "5678 FGH",
+        "meta": "@matricula",
+        "alias": "matricula",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "8b1fea9b-05af-4e70-8888-e9fd8ded73f3",
+    "data": [
+      {
+        "text": "cámbialo a ",
+        "userDefined": false
+      },
+      {
+        "text": "por la tarde",
+        "meta": "@franja",
+        "alias": "franja",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "61c336a5-126e-422a-9597-a8a5cb58c41b",
+    "data": [
+      {
+        "text": "prefiero en ",
+        "userDefined": false
+      },
+      {
+        "text": "Valencia",
+        "meta": "@sys.geo-city",
+        "alias": "ciudad",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "61d180d7-7a62-45a2-98b8-5a7200b8c1f2",
+    "data": [
+      {
+        "text": "me equivoqué de día",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "77ed3627-b4fd-48c4-a1d5-0de0489d1d9c",
+    "data": [
+      {
+        "text": "me he equivocado de matrícula",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "be25dac5-f4b3-4e36-9890-ed54a1624ab0",
+    "data": [
+      {
+        "text": "cambia la fecha al ",
+        "userDefined": false
+      },
+      {
+        "text": "15 de noviembre",
+        "meta": "@sys.date",
+        "alias": "fecha",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "a09d8cff-3335-44fd-89a1-8442f18570dd",
+    "data": [
+      {
+        "text": "mejor ",
+        "userDefined": false
+      },
+      {
+        "text": "por la mañana",
+        "meta": "@franja",
+        "alias": "franja",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "0f1be945-3a06-463e-bf07-5e9bfca02b84",
+    "data": [
+      {
+        "text": "la ciudad es ",
+        "userDefined": false
+      },
+      {
+        "text": "Bilbao",
+        "meta": "@sys.geo-city",
+        "alias": "ciudad",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "99e7f6e7-0a0b-4ded-9b74-105000e90bac",
+    "data": [
+      {
+        "text": "quiero cambiar la ciudad",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "8db5ff4b-5b78-4348-b8c4-28a86aa3ef1d",
+    "data": [
+      {
+        "text": "quiero cambiar la matrícula",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "cc7c96b4-bfb9-49a3-998b-29a315ba14e8",
+    "data": [
+      {
+        "text": "en realidad es el ",
+        "userDefined": false
+      },
+      {
+        "text": "9012 JKL",
+        "meta": "@matricula",
+        "alias": "matricula",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "9c7c0b57-c48c-4b2d-b94c-02aea261e1fa",
+    "data": [
+      {
+        "text": "pásala ",
+        "userDefined": false
+      },
+      {
+        "text": "al viernes",
+        "meta": "@sys.date",
+        "alias": "fecha",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "e43bbca2-fdd0-4c96-95db-a4c0ee668afa",
+    "data": [
+      {
+        "text": "mejor ",
+        "userDefined": false
+      },
+      {
+        "text": "pasado mañana",
+        "meta": "@sys.date",
+        "alias": "fecha",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "d5cbba35-5360-4018-af86-7a47426cd652",
+    "data": [
+      {
+        "text": "que sea ",
+        "userDefined": false
+      },
+      {
+        "text": "por la tarde",
+        "meta": "@franja",
+        "alias": "franja",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "d7c5645c-33e6-4c09-8d6e-28aea48c1a0e",
+    "data": [
+      {
+        "text": "no, en ",
+        "userDefined": false
+      },
+      {
+        "text": "Sevilla",
+        "meta": "@sys.geo-city",
+        "alias": "ciudad",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "d3e0e537-4f6e-4c7d-a230-3e81e6428759",
+    "data": [
+      {
+        "text": "corrige la fecha",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "9326be00-e499-4cdc-a16b-f4ee16afc5e8",
+    "data": [
+      {
+        "text": "quiero cambiar la hora",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "095d7d9c-cb87-4047-b12f-e98fd4df26a8",
+    "data": [
+      {
+        "text": "mejor en ",
+        "userDefined": false
+      },
+      {
+        "text": "Málaga",
+        "meta": "@sys.geo-city",
+        "alias": "ciudad",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "99f3a601-5758-4dc6-a487-7b43a2cbb451",
+    "data": [
+      {
+        "text": "perdona, quería decir ",
+        "userDefined": false
+      },
+      {
+        "text": "el lunes",
+        "meta": "@sys.date",
+        "alias": "fecha",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "3836ff41-caae-4490-b660-fd44a4a4d540",
+    "data": [
+      {
+        "text": "la matrícula está mal",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "804115b7-8d6e-45b6-bd44-649c18fdc9f6",
+    "data": [
+      {
+        "text": "me he confundido, es ",
+        "userDefined": false
+      },
+      {
+        "text": "mañana",
+        "meta": "@sys.date",
+        "alias": "fecha",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "2a55802f-4a23-4fb4-bb59-8b4c48487ea2",
+    "data": [
+      {
+        "text": "cambia el día ",
+        "userDefined": false
+      },
+      {
+        "text": "al martes",
+        "meta": "@sys.date",
+        "alias": "fecha",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "e7dba8ee-7515-4165-bab6-39e67102cd5d",
+    "data": [
+      {
+        "text": "no, mejor ",
+        "userDefined": false
+      },
+      {
+        "text": "el miércoles",
+        "meta": "@sys.date",
+        "alias": "fecha",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "por la tarde",
+        "meta": "@franja",
+        "alias": "franja",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "49c149a3-26b8-484f-8dde-206ecffe7035",
+    "data": [
+      {
+        "text": "la matrícula correcta es ",
+        "userDefined": false
+      },
+      {
+        "text": "1234 BCD",
+        "meta": "@matricula",
+        "alias": "matricula",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "f3680393-a045-4236-92fc-9af3d179a036",
+    "data": [
+      {
+        "text": "quiero cambiar la cita a ",
+        "userDefined": false
+      },
+      {
+        "text": "mañana",
+        "meta": "@sys.date",
+        "alias": "fecha",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "por la tarde",
+        "meta": "@franja",
+        "alias": "franja",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "b635fa41-b013-43df-999b-c8c3b172806b",
+    "data": [
+      {
+        "text": "cambia la cita ",
+        "userDefined": false
+      },
+      {
+        "text": "al lunes",
+        "meta": "@sys.date",
+        "alias": "fecha",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  },
+  {
+    "id": "8b8d3f32-143c-4550-9cc6-39e91f591baa",
+    "data": [
+      {
+        "text": "quiero cambiar un dato de la cita",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "es",
+    "updated": 0
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "value": "manana",
+    "synonyms": [
+      "por la mañana",
+      "de mañana",
+      "a primera hora",
+      "temprano",
+      "antes de comer",
+      "de la mañana",
+      "en la mañana",
+      "a media mañana",
+      "por la mañana temprano"
+    ]
+  },
+  {
+    "value": "tarde",
+    "synonyms": [
+      "por la tarde",
+      "de tarde",
+      "después de comer",
+      "a última hora",
+      "de la tarde",
+      "en la tarde",
+      "a media tarde"
+    ]
+  }
+]

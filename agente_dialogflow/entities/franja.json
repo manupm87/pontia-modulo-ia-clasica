@@ -1,0 +1,9 @@
+{
+  "id": "e943b229-d7f1-40fe-9364-c43ab46748e3",
+  "name": "franja",
+  "isOverridable": true,
+  "isEnum": false,
+  "isRegexp": false,
+  "automatedExpansion": false,
+  "allowFuzzyExtraction": false
+}

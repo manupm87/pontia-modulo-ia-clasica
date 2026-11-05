@@ -1,0 +1,45 @@
+{
+  "id": "c83878d3-0f7a-4637-a230-83cbe4bd5632",
+  "parentId": "65200a1a-3bb3-449e-8374-510eeaecdfee",
+  "rootParentId": "65200a1a-3bb3-449e-8374-510eeaecdfee",
+  "name": "solicitar_cita - no",
+  "auto": true,
+  "contexts": [
+    "ctx_solicitud_en_curso",
+    "solicitar_cita-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "solicitar_cita.solicitar_cita-no",
+      "affectedContexts": [
+        {
+          "name": "ctx_solicitud_en_curso",
+          "lifespan": 3
+        }
+      ],
+      "parameters": [],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "es",
+          "speech": [
+            "De acuerdo, no la confirmo. Dime qué dato quieres cambiar o, si lo prefieres, la dejamos cancelada."
+          ],
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}
