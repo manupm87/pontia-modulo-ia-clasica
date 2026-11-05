@@ -128,8 +128,8 @@
   <div class="cifras">
     <div class="cifra"><b>6</b><span>intenciones de negocio + bienvenida y fallback</span></div>
     <div class="cifra"><b>5</b><span>documentos escaneados, dos manuscritos</span></div>
-    <div class="cifra"><b>1,29 s</b><span>latencia media por turno de voz (máx. 2,45 s)</span></div>
-    <div class="cifra"><b>112</b><span>tests automáticos en verde</span></div>
+    <div class="cifra"><b>1,56 s</b><span>por turno de voz con Dialogflow real (máx. 2,18 s)</span></div>
+    <div class="cifra"><b>117</b><span>tests automáticos en verde</span></div>
   </div>
 </header>
 
@@ -138,8 +138,9 @@
   <h2>La conversación completa, de voz a voz</h2>
   <figure>
     <video src="demo.mp4" controls preload="metadata" playsinline></video>
-    <figcaption>2 min 19 s. La voz del cliente es sintética y pasa por Whisper de verdad; cada diapositiva muestra la intención,
-    los parámetros y la latencia de ese turno. Se genera con <code>python -m demo.demo_guiada</code>.</figcaption>
+    <figcaption>2 min 21 s contra el <b>Dialogflow ES real</b>, con su STT y su TTS nativos en modo audio. La voz del cliente es sintética;
+    cada diapositiva muestra lo que entendió Google, la intención, los parámetros y la latencia del turno.
+    Se genera con <code>DIALOGFLOW_BACKEND=google python -m demo.demo_guiada</code>.</figcaption>
   </figure>
 </section>
 
@@ -281,6 +282,7 @@ tu DNI y, si lo tienes, el parte amistoso.&lt;/prosody&gt;
       </tbody>
     </table>
   </div>
+  <p class="lectura">Probarlo contra Google destapó tres cosas que el emulador no hacía y que ya están resueltas: Dialogflow abandona el slot filling si una pregunta encaja con otra intención (el webhook guarda lo recogido en el contexto y retoma); los contextos de salida de una intención reciben también sus parámetros vacíos (copia <code>guardado_*</code> en el contexto); y el STT de Google perdía las letras de la matrícula (pistas de adaptación, silencio final y normalización de "1234 be ce de" en el webhook).</p>
   <p class="lectura">Además, un <b>emulador local de Dialogflow ES</b> carga el mismo export del agente y reproduce el slot filling, los contextos, los follow-ups y los eventos.
   Así todo se prueba sin cuenta de Google, y con <code>DIALOGFLOW_BACKEND=google</code> funciona igual contra el agente real.</p>
 </section>
@@ -289,10 +291,10 @@ tu DNI y, si lo tienes, el parte amistoso.&lt;/prosody&gt;
   <div class="antetitulo">Estado</div>
   <h2>Qué falta para la entrega</h2>
   <div class="pendiente">
-    <h3>Pasos que necesitan tus cuentas</h3>
+    <h3>Estado de la entrega</h3>
     <ul class="limpia">
-      <li>Importar <code>dist/SegurosAlonso.zip</code> en la consola de Dialogflow ES, poner la URL del túnel en Fulfillment y entrenar. Probado aquí con el emulador, no contra Google.</li>
-      <li>Para la voz nativa de Dialogflow, la clave de la cuenta de servicio en <code>GOOGLE_APPLICATION_CREDENTIALS</code>.</li>
+      <li>Hecho: agente importado en Dialogflow ES (proyecto <code>segurosalonso-al9y</code>), webhook expuesto por túnel y cuenta de servicio con el rol Dialogflow API Client. El guion completo funciona por voz con el STT y el TTS de Google.</li>
+      <li>Grabar el vídeo de entrega hablando tú, siguiendo el mismo guion.</li>
       <li>Voz clonada XTTS: grabar tu voz y aceptar la licencia no comercial CPML de Coqui en la primera descarga del modelo.</li>
       <li>Telegram: crear el bot con @BotFather y poner <code>TELEGRAM_BOT_TOKEN</code>.</li>
     </ul>
