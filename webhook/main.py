@@ -134,6 +134,22 @@ def solo_parametros_cita(params: dict) -> dict:
     return {k: params.get(k) for k in PARAMETROS_CITA if params.get(k) not in (None, "", [])}
 
 
+PATRON_MATRICULA_EN_TEXTO = re.compile(r"\b(\d{4})\s?([BCDFGHJKLMNPRSTVWXYZ]{3})\b")
+
+
+def matricula_en_texto(texto: str) -> str | None:
+    """
+    Busca una matrícula DICTADA en el texto reconocido por el STT.
+
+    El STT de Google transcribe las matrículas de formas que la entidad regex de Dialogflow
+    no reconoce: "1234 be ce de", "1.234 BCD", "cinco seis siete ocho efe ge hache". Las
+    normalizamos ("1234 BCD") y aplicamos la regex de matrícula sobre el resultado.
+    """
+    from voz.stt import normalizar_matricula_hablada
+    m = PATRON_MATRICULA_EN_TEXTO.search(normalizar_matricula_hablada(texto or ""))
+    return f"{m.group(1)} {m.group(2)}" if m else None
+
+
 # ---------------------------------------------------------------------------
 # Bienvenida
 # ---------------------------------------------------------------------------
@@ -197,6 +213,11 @@ def turno_slot_filling(p: Peticion) -> dict:
     actuales = solo_parametros_cita(p.parametros)
     if any(k not in actuales for k in anteriores):
         return evento(EVENTO_SOLICITAR_CITA, {**anteriores, **actuales})
+
+    # Matrícula dictada que la entidad regex no reconoció ("1234 be ce de"): la rescatamos
+    # del texto y reentramos con el evento para que Dialogflow la tenga como parámetro.
+    if not actuales.get("matricula") and (dictada := matricula_en_texto(p.texto)):
+        return evento(EVENTO_SOLICITAR_CITA, {**anteriores, **actuales, "matricula": dictada})
 
     pendiente = siguiente_pendiente(p.parametros)
     if pendiente is None:
@@ -326,6 +347,8 @@ def corregir_dato(p: Peticion) -> dict:
     """
     anteriores = parametros_flujo(p) if p.contexto(CTX_SOLICITUD) else {}
     nuevos = solo_parametros_cita(p.parametros)
+    if not nuevos.get("matricula") and (dictada := matricula_en_texto(p.texto)):
+        nuevos["matricula"] = dictada
     if not nuevos:
         f = Frase("¿Qué dato quieres cambiar: la matrícula, el día, la franja o la ciudad?")
         return responder(p, f, contextos=[contexto_solicitud(anteriores)])
@@ -373,6 +396,9 @@ def consulta_documental(p: Peticion) -> dict:
 
 
 def fallback(p: Peticion) -> dict:
+    # Con una cita a medias, una matrícula dictada que Dialogflow no entendió cae aquí.
+    if p.contexto(CTX_SOLICITUD) and (dictada := matricula_en_texto(p.texto)):
+        return evento(EVENTO_SOLICITAR_CITA, {**parametros_flujo(p), "matricula": dictada})
     # Antes de rendirnos, probamos con los documentos: muchas preguntas libres caen aquí.
     return consulta_documental(p)
 

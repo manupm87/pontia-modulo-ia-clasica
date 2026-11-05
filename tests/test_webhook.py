@@ -177,3 +177,11 @@ def test_reentrada_tras_interrupcion_recupera_datos(cliente):
     r = cliente.post("/webhook", json=peticion("solicitar_cita", {"franja": "manana"}, "por la mañana",
                                                completos=False, contextos=ctx)).json()
     assert r["followupEventInput"]["parameters"] == {"matricula": "1234 BCD", "franja": "manana"}
+
+
+@pytest.mark.parametrize("texto", ["la matrícula es 1234 be ce de", "la matrícula es 1.234 BCD",
+                                   "es la uno dos tres cuatro be ce de"])
+def test_matricula_dictada_en_slot_filling(cliente, texto):
+    """El STT de Google transcribe la matrícula de formas que la entidad regex no reconoce."""
+    r = cliente.post("/webhook", json=peticion("solicitar_cita", {}, texto, completos=False)).json()
+    assert r["followupEventInput"]["parameters"]["matricula"] == "1234 BCD"

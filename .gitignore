@@ -13,3 +13,5 @@ voz/muestras/referencia.wav
 .claude/
 .ruff_cache/
 demo/salida/diapositivas/
+demo/salida_google/*.wav
+demo/salida_google/diapositivas/

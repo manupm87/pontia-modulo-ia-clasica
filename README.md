@@ -79,10 +79,22 @@ comprobaciones de evidencia y cifras. Las 36 preguntas de calibración salen bie
 | TTS neuronal con SSML (2 frases) | 0,7-1,4 s |
 | **Turno completo** | **media 1,29 s · máximo 2,45 s** (objetivo < 5 s) |
 
-El informe completo de cada turno está en `demo/salida/informe.md` y el vídeo en `demo/salida/demo.mp4`
-(2 min 19 s).
+**Con Dialogflow ES real y su voz nativa** (`DIALOGFLOW_BACKEND=google python -m demo.demo_guiada --salida demo/salida_google`):
+los 11 turnos van a la intención correcta con el STT y el TTS de Google en modo audio, **media 1,56 s y máximo 2,18 s
+por turno** (incluye STT, webhook con RAG y TTS). El TTS nativo interpreta el SSML: no lee las etiquetas y deletrea el
+código de la cita. Vídeo: `demo/salida_google/demo.mp4` (2 min 21 s); informe: `demo/salida_google/informe.md`.
+La versión 100 % local (emulador + Whisper + TTS neuronal) está en `demo/salida/`.
 
-**Tests:** 114 pruebas con pytest (negocio, webhook, emulador, regex del OCR, RAG contra Ollama, voz, Telegram).
+**Matrículas por voz.** El STT de Google, sin ayuda, transcribía "1234 BCD" como "1234" y se perdían las letras.
+Tres medidas lo resuelven: pistas de adaptación del STT (`speech_contexts` con los nombres de las consonantes: be, ce,
+de…), medio segundo de silencio al final del audio (sin él se cortaba la última letra) y, en el webhook, una
+normalización del texto reconocido ("1234 be ce de", "1.234 BCD", "cinco seis siete ocho efe ge hache" → "1234 BCD",
+"5678 FGH") que rescata la matrícula cuando la entidad regex no la reconoce y la reinyecta con el evento
+`SOLICITAR_CITA`. Efecto secundario conocido: con las pistas de letras, "vida" se reconoció una vez como "be de"
+(la respuesta siguió siendo correcta).
+
+
+**Tests:** 117 pruebas con pytest (negocio, webhook, emulador, regex del OCR, RAG contra Ollama, voz, Telegram).
 
 
 ## Decisiones técnicas

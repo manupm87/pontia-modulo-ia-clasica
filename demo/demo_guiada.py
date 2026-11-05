@@ -17,6 +17,7 @@ from __future__ import annotations
 
 import argparse
 import io
+import os
 import subprocess
 import time
 import uuid
@@ -24,9 +25,12 @@ import wave
 from pathlib import Path
 
 import numpy as np
+from dotenv import load_dotenv
 
 from demo.guion import GUION
 from dialogflow_local.cliente import crear_cliente
+
+load_dotenv()
 
 TASA = 24000
 VOZ_USUARIO = "es-ES-AlvaroNeural"
@@ -46,6 +50,20 @@ def leer_wav(datos: bytes) -> np.ndarray:
     return x
 
 
+def a_16k(wav: bytes) -> bytes:
+    """WAV de cualquier frecuencia -> WAV 16 kHz mono 16 bits (lo que espera el STT de Dialogflow)."""
+    x = leer_wav(wav)
+    n = int(len(x) * 16000 / TASA)
+    y = np.interp(np.linspace(0, len(x) - 1, n), np.arange(len(x)), x)
+    salida = io.BytesIO()
+    with wave.open(salida, "wb") as w:
+        w.setnchannels(1)
+        w.setsampwidth(2)
+        w.setframerate(16000)
+        w.writeframes((np.clip(y, -1, 1) * 32767).astype(np.int16).tobytes())
+    return salida.getvalue()
+
+
 def silencio(segundos: float) -> np.ndarray:
     return np.zeros(int(TASA * segundos), dtype=np.float32)
 
@@ -61,7 +79,10 @@ def ejecutar(salida: Path, con_video: bool = True) -> None:
     from voz.tts import sintetizar
 
     salida.mkdir(parents=True, exist_ok=True)
-    cliente = crear_cliente()
+    # Con DIALOGFLOW_BACKEND=google se usa el Dialogflow real con su STT y TTS nativos (modo audio):
+    # el audio del cliente va directo a detect_intent y la respuesta llega ya sintetizada.
+    nativo = os.environ.get("DIALOGFLOW_BACKEND", "local").lower() == "google"
+    cliente = crear_cliente(sintetizar=True) if nativo else crear_cliente()
     sesion = f"demo-{uuid.uuid4().hex[:8]}"
     pista: list[np.ndarray] = []
     subtitulos: list[tuple[float, float, str]] = []
@@ -84,26 +105,31 @@ def ejecutar(salida: Path, con_video: bool = True) -> None:
 
     for i, paso in enumerate(GUION, 1):
         print(f"\n[{i}/{len(GUION)}] {paso['nota']}")
-        fila = {"paso": i, "nota": paso["nota"], "stt": 0.0}
+        fila = {"paso": i, "nota": paso["nota"], "stt": 0.0, "nativo": nativo}
         if "evento" in paso:
             turno = cliente.evento(sesion, paso["evento"], payload={"canal": "voz"})
             fila["dice"] = f"(evento {paso['evento']})"
             fila["entendido"] = ""
         else:
             wav_usuario = sintetizar(paso["dice"], backend="edge", voz=VOZ_USUARIO)
-            t0 = time.perf_counter()
-            entendido = transcribir(wav_usuario)
-            fila["stt"] = time.perf_counter() - t0
             print(f"  Cliente dice : {paso['dice']}")
-            print(f"  Whisper oye  : {entendido}")
+            if nativo:
+                # STT nativo de Dialogflow: su tiempo va incluido en la llamada (columna DF)
+                turno = cliente.audio(sesion, a_16k(wav_usuario), payload={"canal": "voz"})
+                entendido = turno.query_text
+            else:
+                t0 = time.perf_counter()
+                entendido = transcribir(wav_usuario)
+                fila["stt"] = time.perf_counter() - t0
+                turno = cliente.texto(sesion, entendido, payload={"canal": "voz"})
+            print(f"  STT oye      : {entendido}")
             anadir(leer_wav(wav_usuario), "Cliente", entendido, fila)
             pausa(0.4)
-            turno = cliente.texto(sesion, entendido, payload={"canal": "voz"})
             fila["dice"], fila["entendido"] = paso["dice"], entendido
 
         t0 = time.perf_counter()
         wav_bot = turno.audio or sintetizar(turno.ssml or turno.texto)
-        fila["tts"] = time.perf_counter() - t0
+        fila["tts"] = time.perf_counter() - t0  # ~0 con TTS nativo: el audio llegó con la respuesta
         fila["dialogflow"] = turno.latencias.get("total", turno.latencias.get("dialogflow", 0.0))
         fila["webhook"] = turno.latencias.get("webhook", 0.0)
         fila["total"] = fila["stt"] + fila["dialogflow"] + fila["tts"]
@@ -135,7 +161,7 @@ def ejecutar(salida: Path, con_video: bool = True) -> None:
 
     # --- informe de latencias ---
     lineas = ["# Demo guiada: informe de turnos", "",
-              "| # | Paso | Whisper entendió | Intención | STT | DF+webhook | TTS | Total |",
+              "| # | Paso | STT entendió | Intención | STT | DF+webhook | TTS | Total |",
               "|---|---|---|---|---|---|---|---|"]
     for f in filas:
         lineas.append(f"| {f['paso']} | {f['nota']} | {f['entendido'] or f['dice']} | `{f['intent']}` | "
@@ -212,7 +238,11 @@ def diapositiva(escena: dict, n_pasos: int):
     x0, x1 = (200, ANCHO - 48) if es_cliente else (48, ANCHO - 200)
     y0 = 200
     d.rounded_rectangle([x0, y0, x1, y0 + alto], radius=22, fill="white", outline=color, width=3)
-    etiqueta = "Cliente (voz sintética → Whisper)" if es_cliente else "Clara (TTS con SSML)"
+    if f.get("nativo"):
+        etiqueta = ("Cliente (voz sintética → STT de Dialogflow)" if es_cliente
+                    else "Clara (TTS nativo de Dialogflow con SSML)")
+    else:
+        etiqueta = "Cliente (voz sintética → Whisper)" if es_cliente else "Clara (TTS con SSML)"
     d.text((x0 + 28, y0 + 16), etiqueta, font=_fuente("segoeuib.ttf", 20), fill=color)
     for i, linea in enumerate(lineas):
         d.text((x0 + 28, y0 + 52 + 44 * i), linea, font=cuerpo, fill=COLORES["tinta"])

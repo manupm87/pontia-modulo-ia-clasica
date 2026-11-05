@@ -216,6 +216,13 @@ class ClienteLocal(ClienteDialogflow):
 # Backend Google (API real)
 # =============================================================================
 
+# Pistas para el STT de Google: nombres de las consonantes que puede llevar una matrícula,
+# las matrículas de ejemplo y vocabulario del dominio.
+PISTAS_STT = ["be", "ce", "de", "efe", "ge", "hache", "jota", "ka", "ele", "eme", "ene", "pe", "erre",
+              "ese", "te", "uve", "uve doble", "equis", "i griega", "zeta",
+              "1234 BCD", "5678 FGH", "9012 JKL", "peritaje", "perito", "franquicia", "póliza"]
+
+
 class ClienteGoogle(ClienteDialogflow):
     """Backend real: ``SessionsClient.detect_intent`` de google-cloud-dialogflow (ES v2).
 
@@ -288,11 +295,17 @@ class ClienteGoogle(ClienteDialogflow):
     def audio(self, session_id: str, wav_bytes: bytes, payload: dict | None = None) -> Turno:
         """Audio WAV (PCM 16 bits mono) -> STT de Dialogflow -> intención -> TTS de Dialogflow."""
         with wave.open(io.BytesIO(wav_bytes), "rb") as w:
-            frecuencia = w.getframerate()
+            frecuencia, ancho = w.getframerate(), w.getsampwidth()
             pcm = w.readframes(w.getnframes())
+        # Medio segundo de silencio al final: sin él, el STT corta la última sílaba
+        # (comprobado: "1234 BCD" se transcribía como "1234 be ce").
+        pcm += bytes(int(frecuencia * 0.5) * ancho)
         entrada = self.df.QueryInput(audio_config=self.df.InputAudioConfig(
             audio_encoding=self.df.AudioEncoding.AUDIO_ENCODING_LINEAR_16,
-            language_code=IDIOMA, sample_rate_hertz=frecuencia))
+            language_code=IDIOMA, sample_rate_hertz=frecuencia,
+            # Adaptación del STT: las letras deletreadas de las matrículas (sin vocales)
+            # y las matrículas de ejemplo. Sin esto Google descarta las letras.
+            speech_contexts=[self.df.SpeechContext(phrases=PISTAS_STT, boost=15)]))
         return self._detectar(session_id, entrada, payload, input_audio=pcm, con_audio=True)
 
 
